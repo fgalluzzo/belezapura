@@ -2,40 +2,28 @@ package modelo;
 
 public class Servico {
 
-	/*
-	 * Tipos de Serviços:
-	 * 
-	 *  1 - penteado
-	 *  2 - corte
-	 *  3 - corte e penteado
-	 *  4 - lavagem
-	 *  5 - pedicure
-	 *  6 - depilação
-	 *  7 - massagem
-	 *  
-	 */
-	private int tipo;
+	private TipoServico tipoServico;
 		
 	private float custo;
 	private int tempo;
 	
 	/*
-	 * Variavel de verificação de execução do serviço:
+	 * Variavel de verificacao de execucao do servico:
 	 * 
-	 * TRUE = se o serviço já foi feito.
-	 * FALSE = se o serviço ainda não foi feito. 
+	 * TRUE = se o servico ja foi feito.
+	 * FALSE = se o servico ainda nao foi feito. 
 	 * 
 	 */
 	
 	private boolean encerrado;
 	
 	
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
+	public void setTipoServico(TipoServico tipoServico) {
+		this.tipoServico = tipoServico;
 	}
 	
-	public int getTipo() {
-		return tipo;
+	public TipoServico getTipoServico() {
+		return tipoServico;
 	}
 
 	public void setCusto(float custo) {
@@ -61,8 +49,5 @@ public class Servico {
 	public boolean isEncerrado() {
 		return encerrado;
 	}
-	
-	
-	
 	
 }
