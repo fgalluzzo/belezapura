@@ -4,15 +4,15 @@ import java.util.Vector;
 
 public class Cliente {
 
-	private int codChegada;
+	private int tempoChegada;
 	private Vector<Servico> servicos;
 	
-	public void setCodChegada(int codChegada) {
-		this.codChegada = codChegada;
+	public void setTempoChegada(int codChegada) {
+		this.tempoChegada = codChegada;
 	}
 	
-	public int getCodChegada() {
-		return codChegada;
+	public int getTempoChegada() {
+		return tempoChegada;
 	}
 
 	public void setServicos(Vector<Servico> servicos) {
