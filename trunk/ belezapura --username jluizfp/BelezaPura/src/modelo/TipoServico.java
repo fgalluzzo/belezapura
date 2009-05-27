@@ -2,14 +2,14 @@ package modelo;
 
 public enum TipoServico {
 	
-	INDEFINIDO(0),
-	PENTEADO(1),
-	CORTE(2),
-	CORTE_E_PENTEADO(3),
-	LAVAGEM(4),
-	PEDICURE(5),
-	DEPILACAO(6),
-	MASSAGEM(7);
+	//INDEFINIDO(0),
+	PENTEADO(0),
+	CORTE(1),
+	CORTE_E_PENTEADO(2),
+	MASSAGEM(3),
+	PEDICURE(4),
+	DEPILACAO(5),
+	LAVAGEM(6);
 	
 	private int indice;
 	
@@ -23,14 +23,14 @@ public enum TipoServico {
 	
 	public static TipoServico getByIndice(int indice) {
 		switch (indice) {
-			case 0: return INDEFINIDO;
-			case 1: return PENTEADO;
-			case 2: return CORTE;
-			case 3: return CORTE_E_PENTEADO;
-			case 4: return LAVAGEM;
-			case 5: return PEDICURE;
-			case 6: return DEPILACAO;
-			case 7: return MASSAGEM;
+			//case 0: return INDEFINIDO;
+			case 0: return PENTEADO;
+			case 1: return CORTE;
+			case 2: return CORTE_E_PENTEADO;
+			case 3: return MASSAGEM;
+			case 4: return PEDICURE;
+			case 5: return DEPILACAO;
+			case 6: return LAVAGEM ;
 			default: throw new IndexOutOfBoundsException();
 		}
 	}
