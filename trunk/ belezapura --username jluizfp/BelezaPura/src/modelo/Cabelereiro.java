@@ -29,7 +29,7 @@ public class Cabelereiro extends Thread{
 	private synchronized ClienteThread procuraCliente(List<ClienteThread> listaClientes){
 	int i;
 	
-	   
+	   // Isto com certeza sera mudaddo visto que a fila pode um tempo fazia e depois chegar um cliente 
 		while(  listaClientes.size()>0 ){
 			
 			System.out.println("[procuraCliente] A Thread Cabeleleira_" + Thread.currentThread().getId() +" esta procurando um cliente ... \n" );
