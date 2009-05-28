@@ -16,7 +16,7 @@ public class SimuladorThread {
 		
 		 
 		List<ClienteThread> listaDeClientes = new ArrayList<ClienteThread>();
-		
+		// Apenas um teste para simulação e Threads 
 		listaDeClientes.add(new ClienteThread("1. Lucas",Arrays.asList("CORTAR_UNHA","LAVAR_CABECA", "FAZER_PES", "CORTAR_CABELO")));
 		listaDeClientes.add(new ClienteThread("2. Antonia",Arrays.asList("BLA", "FAZER_PES", "CORTAR_CABELO")));   
 		listaDeClientes.add(new ClienteThread("3. Roberto",Arrays.asList("HJGHJGGF", "FAZER_PES")));
