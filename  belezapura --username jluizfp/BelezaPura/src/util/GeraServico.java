@@ -9,7 +9,7 @@ import modelo.TipoServico;
 public class GeraServico {
 	
 	private Vector<Servico> servicos;
-	private int numServicos; //Cliente pode ter de 1 até 5 serviços
+	private int numServicos; //Cliente pode ter de 1 atï¿½ 5 serviï¿½os
 	private double range;
 	//private int ntipoServico;
 	//private TipoServico tpServico;
@@ -21,7 +21,7 @@ public class GeraServico {
 			
 		for(int i = 0;i<servicosDisponiveis.length;i++){
 			servicosDisponiveis[i] = new Servico();
-			servicosDisponiveis[i].setTipoServico(i);
+			servicosDisponiveis[i].setTipoServico(TipoServico.values()[i]);
 
 		}
 				
@@ -31,7 +31,7 @@ public class GeraServico {
 		
 		range = Math.random();
 		Servico serv[] = new Servico[7];
-		//Em geral 30% dos clientes desejam todos os serviços, 40% desejam 4, 20% desejam
+		//Em geral 30% dos clientes desejam todos os serviï¿½os, 40% desejam 4, 20% desejam
 		//3 e 10% apenas 2.
 
 		if(range <= 0.3)
@@ -43,15 +43,15 @@ public class GeraServico {
 		else
 			numServicos = 2;
 		       
-		/*Os serviços também são procurados segundo um percentual médio de 50% para cor-
-		te, 40% para penteado, 30% para pedicure, 20% para depilação, 15% para massa-
+		/*Os serviï¿½os tambï¿½m sï¿½o procurados segundo um percentual mï¿½dio de 50% para cor-
+		te, 40% para penteado, 30% para pedicure, 20% para depilaï¿½ï¿½o, 15% para massa-
 		gem.
 		
 		corte : 27,25% 
 		corte e penteado: 10% -- criado um range para corte e penteado um intervalo que seria englobado pelos 2 separadamente
 		penteado : 20,8%
 		pedicure: 19,35%
-		depilação:12,9%
+		depilaï¿½ï¿½o:12,9%
 		massagem:9,7%  
 		 */
 		servicosDisponiveis = new Servico[7];
@@ -79,7 +79,7 @@ public class GeraServico {
 				servicos.add(servicosDisponiveis[2]);
 				servicos.add(servicosDisponiveis[6]);//Lavagem
 				temServico[1] = true;
-				i++;//corte e penteado contam como 2 serviços
+				i++;//corte e penteado contam como 2 serviï¿½os
 				
 			}else if(range > 0.3725 && range <=0.5805 && !(temServico[2])){//penteado
 				
