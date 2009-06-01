@@ -43,6 +43,14 @@ public class ChegadaClientes extends Thread {
 		}
 		//Checagem. Pode apagar depois
 		System.out.println("Tamanho da fila: " +simulador.fila.size());
+		int n = simulador.fila.size(); 
+		for(int i =0;i<n;i++){
+			Cliente c = simulador.fila.removeEvento();
+			System.out.println("Cliente "+ (i+1));
+			for(int j = 0;j<c.getServicos().size();j++){			
+				System.out.println(c.getServicos().get(j).getTipoServico());				
+			}
+		}	
 	}
 	
 }
