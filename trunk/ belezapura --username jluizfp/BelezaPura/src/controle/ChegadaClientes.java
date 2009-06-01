@@ -1,13 +1,14 @@
 package controle;
 
 import modelo.Cliente;
+import sun.misc.Signal;
 import util.GeraServico;
 import view.simulador;
 
 public class ChegadaClientes extends Thread {
 	// lambda é a taxa de clientes que chegam por segundo
 	// preferencialmente deve ser entre 0 e 1
-	private  double lambda = 0.5;
+	private  double lambda = 0.9;
 	
 	public void run(){
 		while((System.currentTimeMillis()- simulador.tempoInicial) < 10000){
@@ -24,10 +25,23 @@ public class ChegadaClientes extends Thread {
 			//Atribuo o tempo de chegada dele
 			c.setTempoChegada(System.currentTimeMillis() - simulador.tempoInicial);
 			
-			synchronized (simulador.fila) {
+			//semaforo de exclusão mútua para a fila de espera
+			try {
+				simulador.mutualEx.acquire();
 				//Insiro o cliente na fila de espera
 				simulador.fila.insereCliente(c);
-			}			
+				simulador.n++;
+				simulador.mutualEx.release();
+				if(simulador.n == 1){
+					simulador.sinc.release(3);
+				}
+			
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				
+				
 			//Checagem. Pode apagar depois
 		    System.out.println(c.getTempoChegada());
 			synchronized (this) {
@@ -40,17 +54,11 @@ public class ChegadaClientes extends Thread {
 			}
 			
 			
+			
+			
 		}
-		//Checagem. Pode apagar depois
-		System.out.println("Tamanho da fila: " +simulador.fila.size());
-		int n = simulador.fila.size(); 
-		for(int i =0;i<n;i++){
-			Cliente c = simulador.fila.removeEvento();
-			System.out.println("Cliente "+ (i+1));
-			for(int j = 0;j<c.getServicos().size();j++){			
-				System.out.println(c.getServicos().get(j).getTipoServico());				
-			}
-		}	
+		
 	}
+	
 	
 }
