@@ -1,16 +1,31 @@
 package view;
 
+import com.sun.media.sound.MidiUtils.TempoCache;
+
+import controle.ChegadaClientes;
+
 import util.GeraServico;
 import modelo.Cliente;
+import modelo.FilaEspera;
 
 public class simulador {
 
-	/**
-	 * @param args
-	 */
+	public static double tempoInicial;
+	//public static double tempoSimulacao;
+	public static FilaEspera fila;
+	
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Cliente c = new Cliente();
+		tempoInicial = System.currentTimeMillis();
+		
+		fila = new FilaEspera();
+		
+		ChegadaClientes cc = new ChegadaClientes();
+		cc.start();
+		
+		/*Cliente c = new Cliente();
+		
 	    GeraServico geraServ = new GeraServico();
 		for(int i =0;i<5;i++){
 			c.setServicos(geraServ.gerador());
@@ -21,7 +36,7 @@ public class simulador {
 				
 			}
 			
-		}
+		}*/
 		
 	}
 

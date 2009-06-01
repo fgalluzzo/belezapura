@@ -8,15 +8,15 @@ import modelo.TipoServico;
 
 public class GeraServico {
 	
-	private Vector<Servico> servicos;
-	private int numServicos; //Cliente pode ter de 1 at� 5 servi�os
-	private double range;
+	private static Vector<Servico> servicos;
+	private static int numServicos; //Cliente pode ter de 1 at� 5 servi�os
+	private static double  range;
 	//private int ntipoServico;
 	//private TipoServico tpServico;
-	private boolean temServico[];
-	Servico servicosDisponiveis[];
+	private static boolean temServico[];
+	private static Servico servicosDisponiveis[];
 	
-	private void carregaServicos(){
+	private static void carregaServicos(){
 		
 			
 		for(int i = 0;i<servicosDisponiveis.length;i++){
@@ -27,7 +27,7 @@ public class GeraServico {
 				
 	}
 	
-	public Vector<Servico> gerador(){
+	public static Vector<Servico> gerador(){
 		
 		range = Math.random();
 		Servico serv[] = new Servico[7];
