@@ -2,17 +2,17 @@ package modelo;
 
 public class Servico {
     
-	private final int pesoCortePent = 18;
+	/*private final int pesoCortePent = 18;
 	private final int pesoPenteado = 15;
 	private final int pesoCorte = 14 ;
 	private final int pesoDepilacao = 13;
 	private final int pesoPedicure = 12;
 	private final int pesoMassagem = 11 ;
 	private final int pesoLavagem = 10;
-	
+	*/
 	private TipoServico tipoServico;
 	private int custo;
-	private int tempo;
+	//private int tempo;
 	
 	/*
 	 * Variavel de verificacao de execucao do servico:
@@ -24,7 +24,12 @@ public class Servico {
 	
 	private boolean encerrado;
 	
-	
+	public Servico(){
+		
+	}
+	public Servico(TipoServico ts){
+		this.setTipoServico(ts);	
+	}
 	public void setTipoServico(TipoServico tipoServico) {
 		this.tipoServico = tipoServico;
 		//O pre�o de cada servi�o � de 50 para penteado,
@@ -35,7 +40,7 @@ public class Servico {
 		//siderando a seguinte ordem decrescente de dura��o: penteado, corte, depila��o, p�s
 		//e m�os, massagem e lavagem.
 
-		if (tipoServico == TipoServico.PENTEADO) {
+		/*if (tipoServico == TipoServico.PENTEADO) {
 			this.tempo = (int)Math.random()*pesoPenteado;
 		} else if (tipoServico == TipoServico.CORTE) {
 			this.tempo = (int)Math.random()*pesoCorte;
@@ -49,8 +54,7 @@ public class Servico {
 			this.tempo = (int)Math.random()*pesoDepilacao;
 		} else if (tipoServico == TipoServico.LAVAGEM) {
 			this.tempo = (int)Math.random()*pesoLavagem;
-		}
-		
+		}*/		
 		this.custo = tipoServico.getValor();
 	}
 	
@@ -62,9 +66,9 @@ public class Servico {
 		return custo;
 	}
 
-	public int getTempo() {
+	/*public int getTempo() {
 		return tempo;
-	}
+	}*/
 
 	public void setEncerrado(boolean status) {
 		this.encerrado = status;
