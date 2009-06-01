@@ -5,7 +5,9 @@ import util.GeraServico;
 import view.simulador;
 
 public class ChegadaClientes extends Thread {
-	private final double lambda = 0.3;
+	// lambda é a taxa de clientes que chegam por segundo
+	// preferencialmente deve ser entre 0 e 1
+	private  double lambda = 0.5;
 	
 	public void run(){
 		while((System.currentTimeMillis()- simulador.tempoInicial) < 10000){
