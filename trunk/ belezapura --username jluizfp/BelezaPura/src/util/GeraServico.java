@@ -68,20 +68,20 @@ public class GeraServico {
 			range = Math.random();
 			
 				
-			if(range <= 0.2725 && !(temServico[0]) ){//Corte
+			if(range <= 0.2725 && !(temServico[0]) && !(temServico[1]) && !(temServico[2]) ){//Corte
 				
 				servicos.add(servicosDisponiveis[1]);
 				servicos.add(servicosDisponiveis[6]);//Lavagem
 				temServico[0] = true;
 				
-			}else if(range >0.2725 && range <=0.3725 && !(temServico[1])){//Corte e penteado
+			}else if(range >0.2725 && range <=0.3725 && !(temServico[1]) && !(temServico[0]) && !(temServico[2])){//Corte e penteado
 				
 				servicos.add(servicosDisponiveis[2]);
 				servicos.add(servicosDisponiveis[6]);//Lavagem
 				temServico[1] = true;
 				i++;//corte e penteado contam como 2 servi�os
 				
-			}else if(range > 0.3725 && range <=0.5805 && !(temServico[2])){//penteado
+			}else if(range > 0.3725 && range <=0.5805 && !(temServico[2]) && !(temServico[0]) && !(temServico[1])){//penteado
 				
 				servicos.add(servicosDisponiveis[0]);
 				temServico[2] = true;

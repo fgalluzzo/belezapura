@@ -24,19 +24,10 @@ public class simulador {
 		ChegadaClientes cc = new ChegadaClientes();
 		cc.start();
 		
-		/*Cliente c = new Cliente();
 		
-	    GeraServico geraServ = new GeraServico();
-		for(int i =0;i<5;i++){
-			c.setServicos(geraServ.gerador());
-			System.out.println("Cliente "+(i+1));
-			for(int j = 0;j<c.getServicos().size();j++){
-				
-				System.out.println(c.getServicos().get(j).getTipoServico());
-				
-			}
-			
-		}*/
+		
+		
+		
 		
 	}
 
