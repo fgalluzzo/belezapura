@@ -28,6 +28,7 @@ public class Simulador {
 		
 		fila = new FilaEspera();
 		
+		
 		Cabeleireiro cab1 = new Cabeleireiro();
 		cab1.start();
 		Cabeleireiro cab2 = new Cabeleireiro();
@@ -37,6 +38,8 @@ public class Simulador {
 		
 		ChegadaClientes cc = new ChegadaClientes();
 		cc.start();
+		
+		
 		
 		
 		

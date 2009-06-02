@@ -30,8 +30,8 @@ public class FilaEspera {
 	
 	public void insereCliente(Cliente e){
 		lista.add(e);
-		if(lista.size()>1)
-			ordenaLista(0,lista.size()-1);
+		/*if(lista.size()>1)
+			ordenaLista(0,lista.size()-1);*/
 	}
 	
 	public Cliente removeCliente(){

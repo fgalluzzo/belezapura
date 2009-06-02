@@ -8,15 +8,15 @@ import modelo.TipoServico;
 
 public class GeraServico {
 	
-	private static Vector<Servico> servicos;
-	private static int numServicos; //Cliente pode ter de 1 at� 5 servi�os
-	private static double  range;
+	private  Vector<Servico> servicos;
+	private  int numServicos; //Cliente pode ter de 1 at� 5 servi�os
+	private  double  range;
 	//private int ntipoServico;
 	//private TipoServico tpServico;
-	private static boolean temServico[];
-	private static Servico servicosDisponiveis[];
+	private  boolean temServico[];
+	private  Servico servicosDisponiveis[];
 	
-	private static void carregaServicos(){
+	private  void carregaServicos(){
 		
 			
 		for(int i = 0;i<servicosDisponiveis.length;i++){
@@ -27,7 +27,7 @@ public class GeraServico {
 				
 	}
 	
-	public static Vector<Servico> gerador(){
+	public  Vector<Servico> gerador(){
 		
 		range = Math.random();
 		Servico serv[] = new Servico[7];
@@ -42,6 +42,7 @@ public class GeraServico {
 			numServicos = 3;
 		else
 			numServicos = 2;
+		//numServicos = 5;
 		       
 		/*Os servi�os tamb�m s�o procurados segundo um percentual m�dio de 50% para cor-
 		te, 40% para penteado, 30% para pedicure, 20% para depila��o, 15% para massa-
@@ -58,7 +59,7 @@ public class GeraServico {
 		carregaServicos();
 		temServico = new boolean[6];
 		
-		for (int i = 0;i<5;i++){
+		for (int i = 0;i<3;i++){
 			temServico[i] = false;
 		}
 		servicos =  new Vector<Servico>();
@@ -68,20 +69,20 @@ public class GeraServico {
 			range = Math.random();
 			
 				
-			if(range <= 0.2725 && !(temServico[0]) && !(temServico[1]) && !(temServico[2]) ){//Corte
+			if(range <= 0.2725 && !(temServico[0]) ){//Corte
 				
 				servicos.add(servicosDisponiveis[1]);
 				servicos.add(servicosDisponiveis[6]);//Lavagem
 				temServico[0] = true;
 				
-			}else if(range >0.2725 && range <=0.3725 && !(temServico[1]) && !(temServico[0]) && !(temServico[2])){//Corte e penteado
+			}else if(range >0.2725 && range <=0.3725 && !(temServico[0])){//Corte e penteado
 				
 				servicos.add(servicosDisponiveis[2]);
 				servicos.add(servicosDisponiveis[6]);//Lavagem
 				temServico[1] = true;
 				i++;//corte e penteado contam como 2 servi�os
 				
-			}else if(range > 0.3725 && range <=0.5805 && !(temServico[2]) && !(temServico[0]) && !(temServico[1])){//penteado
+			}else if(range > 0.3725 && range <=0.5805 && !(temServico[0])){//penteado
 				
 				servicos.add(servicosDisponiveis[0]);
 				temServico[2] = true;
@@ -101,8 +102,17 @@ public class GeraServico {
 				servicos.add(servicosDisponiveis[3]);
 				temServico[5] = true;
 			}else{
-				i--;
+					for (int j = 0; j<3;j++){
+						if(!temServico[j]){						
+							servicos.add(servicosDisponiveis[j]);
+							temServico[j] = true;
+							break;
+						}
+					
+				}
 			}
+			
+		
 		
 			
 			
