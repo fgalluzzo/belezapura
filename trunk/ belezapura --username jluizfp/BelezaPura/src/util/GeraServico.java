@@ -79,37 +79,38 @@ public class GeraServico {
 				
 				servicos.add(servicosDisponiveis[6]);//Lavagem
 				servicos.add(servicosDisponiveis[2]);
-				temServico[1] = true;
+				temServico[0] = true;
 				i++;//corte e penteado contam como 2 servi�os
 				
 			}else if(range > 0.3725 && range <=0.5805 && !(temServico[0])){//penteado
 				
 				servicos.add(servicosDisponiveis[0]);
-				temServico[2] = true;
+				temServico[0] = true;
 				
 			}else if(range > 0.5805 && range <=0.774 && !(temServico[1])){//pedicure
 				
 				servicos.add(servicosDisponiveis[4]);
-				temServico[3] = true;
+				temServico[1] = true;
 				
 			}else if(range >0.774 && range <=0.903 && !(temServico[2])){//depilacao
 				
 				servicos.add(servicosDisponiveis[5]);
-				temServico[4] = true;
+				temServico[2] = true;
 				
 			}else if(range >0.903 && !(temServico[3])){//massagem
 				
 				servicos.add(servicosDisponiveis[3]);
-				temServico[5] = true;
+				temServico[3] = true;
 			}else{
-					for (int j = 0; j<3;j++){
+					for (int j = 0; j<4;j++){
 						if(!temServico[j]){	
 							if(j ==0){
 								servicos.add(servicosDisponiveis[6]);
-								servicos.add(servicosDisponiveis[j]);
+								int m = (int)(Math.random()*20)%3;
+								servicos.add(servicosDisponiveis[m]);
 								i++;
 							}else{
-								servicos.add(servicosDisponiveis[j]);
+								servicos.add(servicosDisponiveis[j+2]);
 							}
 						
 							temServico[j] = true;
