@@ -3,7 +3,7 @@ package controle;
 import modelo.Cliente;
 import sun.misc.Signal;
 import util.GeraServico;
-import view.simulador;
+import view.Simulador;
 
 public class ChegadaClientes extends Thread {
 	// lambda é a taxa de clientes que chegam por segundo
@@ -11,7 +11,7 @@ public class ChegadaClientes extends Thread {
 	private  double lambda = 0.9;
 	
 	public void run(){
-		while((System.currentTimeMillis()- simulador.tempoInicial) < 10000){
+		while((System.currentTimeMillis()- Simulador.tempoInicial) < 10000){
 			
 			//chegadas exponencial, mas podemos usar tb o que foi especificado
 			//de chegadas entre 1 e 5 unidades de tempo
@@ -23,17 +23,17 @@ public class ChegadaClientes extends Thread {
 			//Atribuo serviços aleatórios ao cliente
 			c.setServicos(GeraServico.gerador());
 			//Atribuo o tempo de chegada dele
-			c.setTempoChegada(System.currentTimeMillis() - simulador.tempoInicial);
+			c.setTempoChegada(System.currentTimeMillis() - Simulador.tempoInicial);
 			
 			//semaforo de exclusão mútua para a fila de espera
 			try {
-				simulador.mutualEx.acquire();
+				Simulador.mutualEx.acquire();
 				//Insiro o cliente na fila de espera
-				simulador.fila.insereCliente(c);
-				simulador.n++;
-				simulador.mutualEx.release();
-				if(simulador.n == 1){
-					simulador.sinc.release(3);
+				Simulador.fila.insereCliente(c);
+				Simulador.n++;
+				Simulador.mutualEx.release();
+				if(Simulador.n == 1){
+					Simulador.sinc.release(3);
 				}
 			
 			} catch (InterruptedException e1) {
