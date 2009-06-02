@@ -59,7 +59,7 @@ public class GeraServico {
 		carregaServicos();
 		temServico = new boolean[6];
 		
-		for (int i = 0;i<3;i++){
+		for (int i = 0;i<4;i++){
 			temServico[i] = false;
 		}
 		servicos =  new Vector<Servico>();
@@ -71,14 +71,14 @@ public class GeraServico {
 				
 			if(range <= 0.2725 && !(temServico[0]) ){//Corte
 				
-				servicos.add(servicosDisponiveis[1]);
 				servicos.add(servicosDisponiveis[6]);//Lavagem
+				servicos.add(servicosDisponiveis[1]);
 				temServico[0] = true;
 				
 			}else if(range >0.2725 && range <=0.3725 && !(temServico[0])){//Corte e penteado
 				
-				servicos.add(servicosDisponiveis[2]);
 				servicos.add(servicosDisponiveis[6]);//Lavagem
+				servicos.add(servicosDisponiveis[2]);
 				temServico[1] = true;
 				i++;//corte e penteado contam como 2 servi�os
 				
@@ -87,24 +87,31 @@ public class GeraServico {
 				servicos.add(servicosDisponiveis[0]);
 				temServico[2] = true;
 				
-			}else if(range > 0.5805 && range <=0.774 && !(temServico[3])){//pedicure
+			}else if(range > 0.5805 && range <=0.774 && !(temServico[1])){//pedicure
 				
 				servicos.add(servicosDisponiveis[4]);
 				temServico[3] = true;
 				
-			}else if(range >0.774 && range <=0.903 && !(temServico[4])){//depilacao
+			}else if(range >0.774 && range <=0.903 && !(temServico[2])){//depilacao
 				
 				servicos.add(servicosDisponiveis[5]);
 				temServico[4] = true;
 				
-			}else if(range >0.903 && !(temServico[5])){//massagem
+			}else if(range >0.903 && !(temServico[3])){//massagem
 				
 				servicos.add(servicosDisponiveis[3]);
 				temServico[5] = true;
 			}else{
 					for (int j = 0; j<3;j++){
-						if(!temServico[j]){						
-							servicos.add(servicosDisponiveis[j]);
+						if(!temServico[j]){	
+							if(j ==0){
+								servicos.add(servicosDisponiveis[6]);
+								servicos.add(servicosDisponiveis[j]);
+								i++;
+							}else{
+								servicos.add(servicosDisponiveis[j]);
+							}
+						
 							temServico[j] = true;
 							break;
 						}

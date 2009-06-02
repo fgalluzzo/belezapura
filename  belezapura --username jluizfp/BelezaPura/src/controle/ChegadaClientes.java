@@ -8,7 +8,7 @@ import view.Simulador;
 public class ChegadaClientes extends Thread {
 	// lambda é a taxa de clientes que chegam por segundo
 	// preferencialmente deve ser entre 0 e 1
-	private  double lambda = 0.4;
+	private  double lambda = 0.8;
 	private GeraServico gs =  new GeraServico() ;
 	
 	public void run(){
@@ -34,7 +34,7 @@ public class ChegadaClientes extends Thread {
 					Simulador.n++;
 				Simulador.mutualEx.release();
 				if(Simulador.n == 1){
-					Simulador.sinc.release(3);
+					Simulador.sinc.release(5);
 				}
 			
 			} catch (InterruptedException e1) {
