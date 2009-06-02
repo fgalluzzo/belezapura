@@ -2,16 +2,12 @@ package view;
 
 import java.util.concurrent.Semaphore;
 
-import com.sun.media.sound.MidiUtils.TempoCache;
-
 import controle.Cabeleireiro;
 import controle.ChegadaClientes;
 
-import util.GeraServico;
-import modelo.Cliente;
 import modelo.FilaEspera;
 
-public class simulador {
+public class Simulador {
     public static final int pesoCorte = 1400 ;
 	public static double tempoInicial;
 	//public static double tempoSimulacao;
@@ -24,7 +20,6 @@ public class simulador {
 	public static Semaphore sinc;
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		mutualEx = new Semaphore(1);
 		sinc = new Semaphore(0);
 		
