@@ -21,7 +21,7 @@ public class Cabeleireiro extends Thread {
 			}
 		while(true){						
 				//Espero chegar algum cliente na fila
-			
+			 boolean flLav = false;
 			 Cliente c = new Cliente();
 			 c= null;
 				//semáforo de exclusão mútua para acesso a fila de espera
@@ -30,25 +30,50 @@ public class Cabeleireiro extends Thread {
 				
 					for(int i = 0;i<Simulador.fila.size();i++){
 						for(int j = 0;j<Simulador.fila.get(i).getServicos().size();j++){
-							if(Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.CORTE)){
+							//Se houver uma lavagem -> mandar cliente para a fila de lavagem
+							if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.LAVAGEM))){
+								c = Simulador.fila.removeCliente(i);
+								//exclusão mútua para a fila de lavagem
+								Simulador.mutualExLav.acquire();
+									Simulador.filaLavagem.insereCliente(c);
+								Simulador.mutualExLav.release();
+								flLav = true;
+								break;
+							}
+							//Se for só corte -> retira o serviço de corte 
+							if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.CORTE))){
 								c = Simulador.fila.removeCliente(i);
 								c.getServicos().remove(j);
+								
+								Simulador.n--;
+								m =Simulador.n;
+								break;
+							}
+							//Se for  corte e penteado -> retira o serviço de corte e penteado e insere um de penteado 
+							//temos que ver aqui , pois acho melhor criarmos outro tipo de serviço como Corte_Depois_de_Penteado e
+							//PEnteado_depois_de_corte
+							if(Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.CORTE_E_PENTEADO)){
+								c = Simulador.fila.removeCliente(i);
+								c.getServicos().remove(j);
+								Servico penteado = new Servico(TipoServico.PENTEADO);
+								c.getServicos().add(penteado);
 								Simulador.n--;
 								m =Simulador.n;
 								break;
 							}
 						}
-						if(c != null){
+						if(c != null ){
 							break;
 						}
 					}
-					
+					//Libero a fila de espera
 					Simulador.mutualEx.release();
+					
 					} catch (InterruptedException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-				if(c != null){
+				if(c != null && !flLav){
 					//a thread de cabelereireiro para pelo tempo do corte do cliente
 					tempo_servico = Math.random()*Simulador.pesoCorte;
 					synchronized (this) {
