@@ -12,7 +12,7 @@ public class ChegadaClientes extends Thread {
 	private GeraServico gs =  new GeraServico() ;
 	
 	public void run(){
-		while((System.currentTimeMillis()- Simulador.tempoInicial)/1000 < 60){
+		while((System.currentTimeMillis()- Simulador.tempoInicial)/1000 < 120){
 			
 			//chegadas exponencial, mas podemos usar tb o que foi especificado
 			//de chegadas entre 1 e 5 unidades de tempo
@@ -27,20 +27,20 @@ public class ChegadaClientes extends Thread {
 			c.setTempoChegada((double)(System.currentTimeMillis() - Simulador.tempoInicial)/1000);
 			
 			//semaforo de exclusão mútua para a fila de espera
-			/*try {
-				Simulador.mutualEx.acquire();*/
+			try {
+				Simulador.mutualEx.acquire();
 				//Insiro o cliente na fila de espera
-				Simulador.fila.insereCliente(c);
-				Simulador.n++;
-				//Simulador.mutualEx.release();
+					Simulador.fila.insereCliente(c);
+					Simulador.n++;
+				Simulador.mutualEx.release();
 				if(Simulador.n == 1){
 					Simulador.sinc.release(3);
 				}
 			
-			/*} catch (InterruptedException e1) {
+			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}*/
+			}
 				
 				
 			//Checagem. Pode apagar depois
