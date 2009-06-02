@@ -105,9 +105,14 @@ public class GeraServico {
 					for (int j = 0; j<4;j++){
 						if(!temServico[j]){	
 							if(j ==0){
-								servicos.add(servicosDisponiveis[6]);
+								
 								int m = (int)(Math.random()*20)%3;
-								servicos.add(servicosDisponiveis[m]);
+								if(m == 0)
+									servicos.add(servicosDisponiveis[m]);
+								else{
+									servicos.add(servicosDisponiveis[6]);
+									servicos.add(servicosDisponiveis[m]);
+								}
 								i++;
 							}else{
 								servicos.add(servicosDisponiveis[j+2]);
