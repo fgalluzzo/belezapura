@@ -3,7 +3,7 @@ package controle;
 import modelo.Cliente;
 import modelo.Servico;
 import modelo.TipoServico;
-import view.simulador;
+import view.Simulador;;
 
 public class Cabeleireiro extends Thread {
 	private Cliente c;
@@ -12,26 +12,26 @@ public class Cabeleireiro extends Thread {
 	private double tempo_servico;
 	public void run(){
 		//Espero chegar algum cliente na fila
-		if(simulador.n == 0){
+		if(Simulador.n == 0){
 			try {
-				simulador.sinc.acquire();
+				Simulador.sinc.acquire();
 			} catch (InterruptedException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
 		}
 			
-		while(!simulador.fila.vazia()){						
+		while(!Simulador.fila.vazia()){						
 				//semáforo de exclusão mútua para acesso a fila de espera
 				try {
-					simulador.mutualEx.acquire();
+					Simulador.mutualEx.acquire();
 				
-				for(int i = 0;i<simulador.fila.size();i++){
-					for(int j = 0;j<simulador.fila.get(i).getServicos().size();j++){
-						if(simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.CORTE)){
-							c = simulador.fila.removeCliente(i);
+				for(int i = 0;i<Simulador.fila.size();i++){
+					for(int j = 0;j<Simulador.fila.get(i).getServicos().size();j++){
+						if(Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.CORTE)){
+							c = Simulador.fila.removeCliente(i);
 							c.getServicos().remove(j);
-							simulador.n--;
+							Simulador.n--;
 							break;
 						}
 					}
@@ -39,14 +39,14 @@ public class Cabeleireiro extends Thread {
 						break;
 					}
 				}
-				simulador.mutualEx.release();
+				Simulador.mutualEx.release();
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
 				//a thread de cabelereireiro para pelo tempo do corte do cliente
-				tempo_servico = Math.random()*simulador.pesoCorte;
+				tempo_servico = Math.random()*Simulador.pesoCorte;
 				synchronized (this) {
 					try {
 						
@@ -58,9 +58,9 @@ public class Cabeleireiro extends Thread {
 				
 				//Insiro ele de volta na fila de espera
 				try {
-					simulador.mutualEx.acquire();
-					simulador.fila.insereCliente(c);
-					simulador.mutualEx.release();
+					Simulador.mutualEx.acquire();
+					Simulador.fila.insereCliente(c);
+					Simulador.mutualEx.release();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -71,7 +71,7 @@ public class Cabeleireiro extends Thread {
 			
 			//Checagem. Pode apagar depois
 		
-			System.out.println("Tamanho da fila: " +simulador.fila.size());
+			System.out.println("Tamanho da fila: " +Simulador.fila.size());
 			System.out.println(currentThread().getId());
 			
 		
