@@ -19,11 +19,11 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCabeleireira3;
     private javax.swing.JLabel jLabelCabeleireira4;
     private javax.swing.JLabel jLabelCabeleireira5;
-    private javax.swing.JLabel jLabelCabeloStatus1;
-    private javax.swing.JLabel jLabelCabeloStatus2;
-    private javax.swing.JLabel jLabelCabeloStatus3;
-    private javax.swing.JLabel jLabelCabeloStatus4;
-    private javax.swing.JLabel jLabelCabeloStatus5;
+    public static javax.swing.JLabel jLabelCabeloStatus1;
+    public static javax.swing.JLabel jLabelCabeloStatus2;
+    public static javax.swing.JLabel jLabelCabeloStatus3;
+    public static javax.swing.JLabel jLabelCabeloStatus4;
+    public static javax.swing.JLabel jLabelCabeloStatus5;
     private javax.swing.JLabel jLabelCaixa1;
     private javax.swing.JLabel jLabelCaixa2;
     private javax.swing.JLabel jLabelCaixaStatus1;
