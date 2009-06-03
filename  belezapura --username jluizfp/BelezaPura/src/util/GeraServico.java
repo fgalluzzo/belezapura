@@ -30,7 +30,6 @@ public class GeraServico {
 	public  Vector<Servico> gerador(){
 		
 		range = Math.random();
-		Servico serv[] = new Servico[7];
 		//Em geral 30% dos clientes desejam todos os servi�os, 40% desejam 4, 20% desejam
 		//3 e 10% apenas 2.
 

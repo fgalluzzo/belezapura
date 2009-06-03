@@ -3,7 +3,6 @@ package controle;
 import javax.swing.ImageIcon;
 
 import modelo.Cliente;
-import modelo.Servico;
 import modelo.TipoServico;
 import view.Janela;
 import view.Simulador;
@@ -11,7 +10,7 @@ import view.Simulador;
 public class Cabeleireiro extends Thread {
 	
 
-	private Servico servico_cliente;
+	//private Servico servico_cliente;
 	private double tempo_servico;
 	private int m;
 	public void run(){
