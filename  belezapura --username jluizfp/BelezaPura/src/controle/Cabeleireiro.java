@@ -1,9 +1,12 @@
 package controle;
 
+import javax.swing.ImageIcon;
+
 import modelo.Cliente;
 import modelo.Servico;
 import modelo.TipoServico;
-import view.Simulador;;
+import view.Janela;
+import view.Simulador;
 
 public class Cabeleireiro extends Thread {
 	
@@ -31,6 +34,7 @@ public class Cabeleireiro extends Thread {
 					for(int i = 0;i<Simulador.fila.size();i++){
 						for(int j = 0;j<Simulador.fila.get(i).getServicos().size();j++){
 							//Se houver uma lavagem -> mandar cliente para a fila de lavagem
+							
 							if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.LAVAGEM))){
 								c = Simulador.fila.removeCliente(i);
 								//exclusão mútua para a fila de lavagem
@@ -73,13 +77,51 @@ public class Cabeleireiro extends Thread {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					
 				if(c != null && !flLav){
 					//a thread de cabelereireiro para pelo tempo do corte do cliente
 					tempo_servico = Math.random()*Simulador.pesoCorte;
 					synchronized (this) {
 						try {
-							
+							int i = (int)currentThread().getId()%5;
+							switch(i){
+								case 0:
+									Janela.jLabelCabeloStatus1.setIcon(new ImageIcon("imgs/ocup.gif"));
+									break;
+								case 1:
+									Janela.jLabelCabeloStatus2.setIcon(new ImageIcon("imgs/ocup.gif"));
+									break;
+								case 2:
+									Janela.jLabelCabeloStatus3.setIcon(new ImageIcon("imgs/ocup.gif"));
+									break;
+								case 3:
+									Janela.jLabelCabeloStatus4.setIcon(new ImageIcon("imgs/ocup.gif"));
+									break;
+								case 4:
+									Janela.jLabelCabeloStatus5.setIcon(new ImageIcon("imgs/ocup.gif"));
+									break;
+									
+							}
+								
 							wait((long)tempo_servico);
+							switch(i){
+							case 0:
+								Janela.jLabelCabeloStatus1.setIcon(new ImageIcon("imgs/free.gif"));
+								break;
+							case 1:
+								Janela.jLabelCabeloStatus2.setIcon(new ImageIcon("imgs/free.gif"));
+								break;
+							case 2:
+								Janela.jLabelCabeloStatus3.setIcon(new ImageIcon("imgs/free.gif"));
+								break;
+							case 3:
+								Janela.jLabelCabeloStatus4.setIcon(new ImageIcon("imgs/free.gif"));
+								break;
+							case 4:
+								Janela.jLabelCabeloStatus5.setIcon(new ImageIcon("imgs/free.gif"));
+								break;
+								
+						}
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}

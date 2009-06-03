@@ -8,7 +8,7 @@ import controle.ChegadaClientes;
 import modelo.FilaEspera;
 
 public class Simulador {
-    public static final int pesoCorte = 1400 ;
+    public static final int pesoCorte = 2000 ;
 	public static double tempoInicial;
 	//public static double tempoSimulacao;
 	public static FilaEspera fila;
@@ -27,7 +27,10 @@ public class Simulador {
 		mutualExLav = new Semaphore(1);
 		sinc = new Semaphore(0);
 		
-		
+	   
+        new Janela().setVisible(true);
+           
+    
 		tempoInicial = System.currentTimeMillis();
 		
 		fila = new FilaEspera();
