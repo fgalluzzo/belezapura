@@ -3,18 +3,16 @@ import java.util.List;
 
 
 public class ClienteThread {
-	
 
 	// Classe utilizada  apenas para teste de manutenção da Thread
 	// Tipo de pedidos = CORTAR_CABELO , LAVAR_CABECA , FAZER_PES ,APLICAR_MASSAGEM ...
-	  
-	  
     
 	private String nome;
 	private Boolean cabeloLavado = Boolean.TRUE;
 	private Boolean pesFeitos = Boolean.TRUE;
 	private Boolean massagemRecebida = Boolean.TRUE;
 	private Boolean cabeloCortado = Boolean.TRUE;
+	private Boolean depilado = Boolean.TRUE; 
 	private List<String> pedidos;
 	
 	public ClienteThread(String nome,List<String> pedidos){
@@ -33,6 +31,9 @@ public class ClienteThread {
 	   	    
 	    if(pedidos.contains("APLICAR_MASSAGEM"))
 	    	massagemRecebida = Boolean.FALSE;
+	    
+	    if(pedidos.contains("FAZER_DEPILACAO"))
+	    	depilado = Boolean.FALSE;
 	}
 	
 	
@@ -49,7 +50,7 @@ public class ClienteThread {
 		return cabeloCortado;
 	}
 
-	public void setCabeloCortado(Boolean cabeloLavado) {
+	public void setCabeloCortado(Boolean cabeloCortado) {
 		this.cabeloCortado = cabeloCortado;
 	}
 	
@@ -77,7 +78,11 @@ public class ClienteThread {
 		this.massagemRecebida = massagemRecebida;
 	}
 	
+	public Boolean getDepilado() {
+		return depilado;
+	}
 
-	
-
+	public void setDepilado(Boolean depilado) {
+		this.depilado = depilado;
+	}
 }
