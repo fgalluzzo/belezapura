@@ -4,7 +4,7 @@ import java.util.concurrent.Semaphore;
 
 import controle.Cabeleireiro;
 import controle.ChegadaClientes;
-import controle.Lavadeira;
+//import controle.Lavadeira;
 
 import modelo.FilaEspera;
 
@@ -13,6 +13,8 @@ public class Simulador {
     public static final int pesoPenteado = 2500;
     public static final int pesoCortePenteado = 4000;
     public static final int pesoLavagem = 500;
+    
+    public static final int horarioComercial = 120;
     
 	public static double tempoInicial;
 	//public static double tempoSimulacao;
@@ -57,12 +59,13 @@ public class Simulador {
 		Cabeleireiro cab5 = new Cabeleireiro();
 		cab5.start();
 		
-		Lavadeira lav1 = new Lavadeira();
+		/*Lavadeira lav1 = new Lavadeira();
 		lav1.start();
 		Lavadeira lav2 = new Lavadeira();
 		lav2.start();
 		Lavadeira lav3 = new Lavadeira();
 		lav3.start();
+		*/
 		
 		ChegadaClientes cc = new ChegadaClientes();
 		cc.start();
