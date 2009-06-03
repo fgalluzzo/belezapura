@@ -8,7 +8,7 @@ import view.Simulador;
 public class ChegadaClientes extends Thread {
 	// lambda é a taxa de clientes que chegam por segundo
 	// preferencialmente deve ser entre 0 e 1
-	private  double lambda = 0.8;
+	private  double lambda = 1.0;
 	private GeraServico gs =  new GeraServico() ;
 	
 	public void run(){

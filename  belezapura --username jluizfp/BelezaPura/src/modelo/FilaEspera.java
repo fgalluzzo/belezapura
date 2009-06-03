@@ -35,7 +35,7 @@ public class FilaEspera {
 	}
 	
 	public Cliente removeCliente(){
-		return lista.firstElement();
+		return lista.remove(0);
 	
 	}
 	public Cliente removeCliente(int i){

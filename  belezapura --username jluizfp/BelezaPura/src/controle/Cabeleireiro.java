@@ -37,10 +37,15 @@ public class Cabeleireiro extends Thread {
 							
 							if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.LAVAGEM))){
 								c = Simulador.fila.removeCliente(i);
+								c.getServicos().remove(j);
 								//exclusão mútua para a fila de lavagem
 								Simulador.mutualExLav.acquire();
 									Simulador.filaLavagem.insereCliente(c);
+									Simulador.nl++;
 								Simulador.mutualExLav.release();
+								if(Simulador.nl == 1){
+									Simulador.sincLav.release(1);
+								}
 								flLav = true;
 								break;
 							}
@@ -48,19 +53,25 @@ public class Cabeleireiro extends Thread {
 							if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.CORTE))){
 								c = Simulador.fila.removeCliente(i);
 								c.getServicos().remove(j);
-								
+								tempo_servico = Math.random()*Simulador.pesoCorte;
 								Simulador.n--;
 								m =Simulador.n;
 								break;
 							}
 							//Se for  corte e penteado -> retira o serviço de corte e penteado e insere um de penteado 
-							//temos que ver aqui , pois acho melhor criarmos outro tipo de serviço como Corte_Depois_de_Penteado e
-							//PEnteado_depois_de_corte
+							
 							if(Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.CORTE_E_PENTEADO)){
 								c = Simulador.fila.removeCliente(i);
-								c.getServicos().remove(j);
-								Servico penteado = new Servico(TipoServico.PENTEADO);
-								c.getServicos().add(penteado);
+								c.getServicos().remove(j);					
+								tempo_servico = Math.random()*Simulador.pesoCortePenteado;
+								Simulador.n--;
+								m =Simulador.n;
+								break;
+							}
+							if(Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.PENTEADO)){
+								c = Simulador.fila.removeCliente(i);
+								c.getServicos().remove(j);					
+								tempo_servico = Math.random()*Simulador.pesoPenteado;
 								Simulador.n--;
 								m =Simulador.n;
 								break;
@@ -80,7 +91,7 @@ public class Cabeleireiro extends Thread {
 					
 				if(c != null && !flLav){
 					//a thread de cabelereireiro para pelo tempo do corte do cliente
-					tempo_servico = Math.random()*Simulador.pesoCorte;
+					
 					synchronized (this) {
 						try {
 							int i = (int)currentThread().getId()%5;
