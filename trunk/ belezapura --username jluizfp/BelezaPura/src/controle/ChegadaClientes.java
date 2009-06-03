@@ -12,7 +12,7 @@ public class ChegadaClientes extends Thread {
 	private GeraServico gs =  new GeraServico() ;
 	
 	public void run(){
-		while((System.currentTimeMillis()- Simulador.tempoInicial)/1000 < 120){
+		while((System.currentTimeMillis()- Simulador.tempoInicial)/1000 < Simulador.horarioComercial){
 			
 			//chegadas exponencial, mas podemos usar tb o que foi especificado
 			//de chegadas entre 1 e 5 unidades de tempo
