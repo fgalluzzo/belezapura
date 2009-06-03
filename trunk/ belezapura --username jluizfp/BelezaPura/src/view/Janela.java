@@ -10,6 +10,8 @@ public class Janela extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
+	boolean teste = false;
+	
 	private javax.swing.JButton jButtonParar;
     private javax.swing.JLabel jLabelHora;
     private javax.swing.JLabel jLabelCabeleireira1;
@@ -506,7 +508,7 @@ public class Janela extends javax.swing.JFrame {
         jButtonParar.setText("Parar");
         jButtonParar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonPararActionPerformed(evt);
             }
         });
 
@@ -568,7 +570,18 @@ public class Janela extends javax.swing.JFrame {
 
         pack();
     }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        
+    private void jButtonPararActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	if(teste==false){
+    		jLabelPeStatus1.setIcon(new ImageIcon("imgs/ocup.gif"));
+    		jLabelPeStatus2.setIcon(new ImageIcon("imgs/ocup.gif"));
+    		jLabelPeStatus3.setIcon(new ImageIcon("imgs/ocup.gif"));
+    		teste=true;
+    	}else{
+    		jLabelPeStatus1.setIcon(new ImageIcon("imgs/free.gif"));
+        	jLabelPeStatus2.setIcon(new ImageIcon("imgs/free.gif"));
+        	jLabelPeStatus3.setIcon(new ImageIcon("imgs/free.gif"));
+        	teste=false;
+    	}
     }
 }
