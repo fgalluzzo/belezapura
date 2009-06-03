@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Cabelereiro extends Thread{
 
-	private List listaClientes;
+	private List<ClienteThread> listaClientes;
 	private static final int DELAY = 20000; 
 	public Cabelereiro(List<ClienteThread> listaClientes){
 		this.listaClientes = listaClientes;
@@ -27,7 +27,6 @@ public class Cabelereiro extends Thread{
 	// So uma Thread pode acessar a ListaClientes de cada vez pois pode ocorrer de duas Threads pegarem 
 	// o mesmo cliente
 	private synchronized ClienteThread procuraCliente(List<ClienteThread> listaClientes){
-	int i;
 	
 	   // Isto com certeza sera mudaddo visto que a fila pode um tempo fazia e depois chegar um cliente 
 		while(  listaClientes.size()>0 ){

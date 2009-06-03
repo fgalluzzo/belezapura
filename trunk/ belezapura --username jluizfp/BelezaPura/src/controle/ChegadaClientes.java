@@ -1,7 +1,6 @@
 package controle;
 
 import modelo.Cliente;
-import sun.misc.Signal;
 import util.GeraServico;
 import view.Simulador;
 
