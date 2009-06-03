@@ -32,9 +32,9 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelClientesChegada;
     private javax.swing.JLabel jLabelFaturamentoLogo;
     private javax.swing.JLabel jLabelFaturamentoValor;
-    private javax.swing.JLabel jLabelLavadaStatus1;
-    private javax.swing.JLabel jLabelLavadaStatus2;
-    private javax.swing.JLabel jLabelLavadaStatus3;
+    public static javax.swing.JLabel jLabelLavadaStatus1;
+    public static javax.swing.JLabel jLabelLavadaStatus2;
+    public static javax.swing.JLabel jLabelLavadaStatus3;
     private javax.swing.JLabel jLabelLavadora1;
     private javax.swing.JLabel jLabelLavadora2;
     private javax.swing.JLabel jLabelLavadora3;
