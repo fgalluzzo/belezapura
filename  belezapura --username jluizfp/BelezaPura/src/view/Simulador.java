@@ -2,17 +2,22 @@ package view;
 
 import java.util.concurrent.Semaphore;
 
+import modelo.FilaEspera;
 import controle.Cabeleireiro;
 import controle.ChegadaClientes;
-//import controle.Lavadeira;
-
-import modelo.FilaEspera;
+import controle.Depiladora;
+import controle.Lavadeira;
+import controle.Massagista;
+import controle.Pedicure;
 
 public class Simulador {
-    public static final int pesoCorte = 2000 ;
-    public static final int pesoPenteado = 2500;
-    public static final int pesoCortePenteado = 4000;
+    public static final int pesoCorte = 2500 ;
+    public static final int pesoPenteado = 3000;
+    public static final int pesoCortePenteado = 5000;
     public static final int pesoLavagem = 500;
+    public static final int pesoMassagem = 1000;
+    public static final int pesoPedicure = 1500;
+    public static final int pesoDepilacao = 2000;
     
     public static final int horarioComercial = 120;
     
@@ -37,10 +42,8 @@ public class Simulador {
 		mutualExLav = new Semaphore(1);
 		sinc = new Semaphore(0);
 		sincLav = new Semaphore(0);
-		
 	   
         new Janela().setVisible(true);
-           
     
 		tempoInicial = System.currentTimeMillis();
 		
@@ -59,22 +62,30 @@ public class Simulador {
 		Cabeleireiro cab5 = new Cabeleireiro();
 		cab5.start();
 		
-		/*Lavadeira lav1 = new Lavadeira();
+		Lavadeira lav1 = new Lavadeira();
 		lav1.start();
 		Lavadeira lav2 = new Lavadeira();
 		lav2.start();
 		Lavadeira lav3 = new Lavadeira();
 		lav3.start();
-		*/
+		
+		Pedicure ped1 = new Pedicure();
+		ped1.start();
+		Pedicure ped2 = new Pedicure();
+		ped2.start();
+		Pedicure ped3 = new Pedicure();
+		ped3.start();
+		
+		Depiladora dep1 = new Depiladora();
+		dep1.start();
+		Depiladora dep2 = new Depiladora();
+		dep2.start();
+		
+		Massagista mas1 = new Massagista();
+		mas1.start();
 		
 		ChegadaClientes cc = new ChegadaClientes();
 		cc.start();
-		
-		
-		
-		
-		
-		
 		
 		
 	}

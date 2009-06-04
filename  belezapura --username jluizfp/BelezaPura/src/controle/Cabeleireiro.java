@@ -10,7 +10,6 @@ import view.Simulador;
 public class Cabeleireiro extends Thread {
 	
 
-	//private Servico servico_cliente;
 	private double tempo_servico;
 	private int m;
 	public void run(){
