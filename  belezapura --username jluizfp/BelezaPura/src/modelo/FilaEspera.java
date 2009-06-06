@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.Vector;
+import view.Janela;
 
 public class FilaEspera {
 	
@@ -27,16 +28,30 @@ public class FilaEspera {
 	
 	public void insereCliente(Cliente e){
 		lista.add(e);
-		if(lista.size()>1)
+		if(lista.size()>1){
 			ordenaLista(0,lista.size()-1);
+		}
+		Janela.jListaClientes.setText(imprime(lista));
 	}
 	
+	private String imprime(Vector<Cliente> clientes) {
+		
+		String t = "";
+		
+		for(int i=0; i<clientes.size(); i++){
+			t = "C" + (i+1) +" - " + ((Cliente) clientes.get(i)).getTempoChegada()+ "\n" + t;
+		}
+		
+		return t;
+	}
+
 	public Cliente removeCliente(){
 		return lista.remove(0);
-	
 	}
 	public Cliente removeCliente(int i){
-		return lista.remove(i);
+		Cliente r = lista.remove(i);
+		Janela.jListaClientes.setText(imprime(lista));
+		return r;
 	}
 	public Cliente get(int i){
 		return lista.elementAt(i);
@@ -48,7 +63,7 @@ public class FilaEspera {
 	public int size(){
 		return lista.size();
 	}
-private  void ordenaLista(int lo, int hi){
+	private  void ordenaLista(int lo, int hi){
 		
 		Cliente clienteA = new Cliente();
 		Cliente clienteB = new Cliente();

@@ -1,5 +1,7 @@
 package controle;
 
+import javax.swing.JFrame;
+
 import modelo.Cliente;
 import util.GeraServico;
 import view.Simulador;
@@ -9,6 +11,7 @@ public class ChegadaClientes extends Thread {
 	// preferencialmente deve ser entre 0 e 1
 	private  double lambda = 1.0;
 	private GeraServico gs =  new GeraServico() ;
+	private JFrame view;
 	
 	public void run(){
 		while((System.currentTimeMillis()- Simulador.tempoInicial)/1000 < Simulador.horarioComercial){

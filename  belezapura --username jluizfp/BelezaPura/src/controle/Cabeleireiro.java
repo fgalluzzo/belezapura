@@ -36,6 +36,7 @@ public class Cabeleireiro extends Thread {
 							if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.LAVAGEM))){
 								c = Simulador.fila.removeCliente(i);
 								c.getServicos().remove(j);
+								//System.out.println("Cliente removido: " + i + " - " + c.imprimeServicos(c.getServicos()));
 								//exclusão mútua para a fila de lavagem
 								Simulador.mutualExLav.acquire();
 									Simulador.filaLavagem.insereCliente(c);
@@ -83,7 +84,6 @@ public class Cabeleireiro extends Thread {
 					Simulador.mutualEx.release();
 					
 					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					
@@ -142,14 +142,12 @@ public class Cabeleireiro extends Thread {
 						Simulador.fila.insereCliente(c);
 						Simulador.mutualEx.release();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					if(m == 0){
 						try {
 							Simulador.sinc.acquire();
 						} catch (InterruptedException e2) {
-							// TODO Auto-generated catch block
 							e2.printStackTrace();
 						}
 					}
