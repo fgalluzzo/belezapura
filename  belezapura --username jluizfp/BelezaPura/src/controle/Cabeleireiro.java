@@ -11,16 +11,16 @@ public class Cabeleireiro extends Thread {
 	
 
 	private double tempo_servico;
-	private int m;
 	public void run(){
 		
-		 try {
-				Simulador.sinc.acquire();
-			} catch (InterruptedException e3) {
-				// TODO Auto-generated catch block
-				e3.printStackTrace();
-			}
-		while(true){						
+		
+		while(true){
+			 try {
+					Simulador.sinc.acquire();
+				} catch (InterruptedException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
 				//Espero chegar algum cliente na fila
 			 boolean flLav = false;
 			 Cliente c = new Cliente();
@@ -40,11 +40,8 @@ public class Cabeleireiro extends Thread {
 								//exclusão mútua para a fila de lavagem
 								Simulador.mutualExLav.acquire();
 									Simulador.filaLavagem.insereCliente(c);
-									Simulador.nl++;
 								Simulador.mutualExLav.release();
-								if(Simulador.nl == 1){
-									Simulador.sincLav.release();
-								}
+								Simulador.sincLav.release();
 								flLav = true;
 								break;
 							}
@@ -53,8 +50,6 @@ public class Cabeleireiro extends Thread {
 								c = Simulador.fila.removeCliente(i);
 								c.getServicos().remove(j);
 								tempo_servico = Math.random()*Simulador.pesoCorte;
-								Simulador.n--;
-								m =Simulador.n;
 								break;
 							}
 							//Se for  corte e penteado -> retira o serviço de corte e penteado e insere um de penteado 
@@ -63,22 +58,19 @@ public class Cabeleireiro extends Thread {
 								c = Simulador.fila.removeCliente(i);
 								c.getServicos().remove(j);					
 								tempo_servico = Math.random()*Simulador.pesoCortePenteado;
-								Simulador.n--;
-								m =Simulador.n;
 								break;
 							}
 							if(Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.PENTEADO)){
 								c = Simulador.fila.removeCliente(i);
 								c.getServicos().remove(j);					
 								tempo_servico = Math.random()*Simulador.pesoPenteado;
-								Simulador.n--;
-								m =Simulador.n;
 								break;
 							}
 						}
 						if(c != null ){
 							break;
-						}
+						}else
+							Simulador.sinc.release();
 					}
 					//Libero a fila de espera
 					Simulador.mutualEx.release();
@@ -140,12 +132,9 @@ public class Cabeleireiro extends Thread {
 						try {
 							Simulador.mutualEx.acquire();
 							Simulador.fila.insereCliente(c);
-							Simulador.n++;
-							m = Simulador.n;
 							Simulador.mutualEx.release();
-							if(Simulador.n == 1){
-								Simulador.sinc.release(14);
-							}
+							Simulador.sinc.release();
+							
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -154,11 +143,10 @@ public class Cabeleireiro extends Thread {
 						try {
 							Simulador.mutualExCaixa.acquire();
 								Simulador.filaCaixa.insereCliente(c);
-								Simulador.nc++;
 							Simulador.mutualExCaixa.release();
-							if(Simulador.nc == 1){
-								Simulador.sincCaixa.release();
-							}
+							Simulador.sincCaixa.release();
+
+							
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -167,16 +155,14 @@ public class Cabeleireiro extends Thread {
 							
 					}
 					
-					if(m == 0){
-						try {
-							Simulador.sinc.acquire();
-						} catch (InterruptedException e2) {
-							e2.printStackTrace();
-						}
-					}
-					//Checagem. Pode apagar depois
 					
+					//Checagem. Pode apagar depois
 					System.out.println("Cab"+currentThread().getId()+" Tamanho da fila: " +Simulador.fila.size());
+				}
+				
+				if(Simulador.salaoFechado && Simulador.fila.size()==0){
+					//computar faturameto da thread
+					break;
 				}
 			}
 			

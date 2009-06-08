@@ -9,25 +9,24 @@ import modelo.Cliente;
 public class Lavadeira extends Thread {
 		
 	
-	private int m;
+	
 	private double tempo_servico;
 	
 	public void run() {
-		//Semáforo de sincronização  para o acesso a fila de espera de pessoas para lavar 
-		try {
-			Simulador.sincLav.acquire();
-		} catch (InterruptedException e3) {
-			// TODO Auto-generated catch block
-			e3.printStackTrace();
-		}
+		
 		while(true){
+			//Semáforo de sincronização  para o acesso a fila de espera de pessoas para lavar 
+			try {
+				Simulador.sincLav.acquire();
+			} catch (InterruptedException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			}
 			Cliente c = new Cliente();
 			//Semáforo de exclusão mútua  para o acesso a fila de espera de pessoas para lavar 
 			try {
 				Simulador.mutualExLav.acquire();
 					c = Simulador.filaLavagem.removeCliente();
-				    Simulador.nl--;
-					m =Simulador.nl;
 				Simulador.mutualExLav.release();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -68,32 +67,27 @@ public class Lavadeira extends Thread {
 					}
 				}
 				
-				if(c.getServicos()!=null){
+			
 					//Insiro ele de volta na fila de espera
 					try {
 						Simulador.mutualEx.acquire();
 							Simulador.fila.insereCliente(c);
-							Simulador.n++;
 						Simulador.mutualEx.release();
-						if(Simulador.n == 1){
-							Simulador.sinc.release(14);
-						}
+						Simulador.sinc.release();
+						
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				}
+					
+					
 			
-				if(m == 0){
-					try {
-						Simulador.sincLav.acquire();
-					} catch (InterruptedException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-				}
+				
 			}
-			
+			if(Simulador.salaoFechado && Simulador.fila.size()==0){
+				//computar faturameto da thread
+				break;
+			}
 			
 		}
 		 
