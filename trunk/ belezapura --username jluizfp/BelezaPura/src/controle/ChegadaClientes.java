@@ -43,11 +43,10 @@ public class ChegadaClientes extends Thread {
 				Simulador.mutualEx.acquire();
 				//Insiro o cliente na fila de espera
 					Simulador.fila.insereCliente(c);
-					Simulador.n++;
 				Simulador.mutualEx.release();
-				if(Simulador.n == 1){
-					Simulador.sinc.release(14);
-				}
+				Simulador.sinc.release();
+					
+				
 			
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
@@ -71,6 +70,7 @@ public class ChegadaClientes extends Thread {
 			
 			
 		}
+		Simulador.salaoFechado = true;
 		System.out.println("Salão Fechado");
 	}
 	

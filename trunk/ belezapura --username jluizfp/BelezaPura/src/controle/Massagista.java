@@ -14,14 +14,15 @@ public class Massagista extends Thread {
 	
 	public void run(){
 		
-		try {
-			Simulador.sinc.acquire();
-		} catch (InterruptedException e3) {
-			// TODO Auto-generated catch block
-			e3.printStackTrace();
-		}
+		
 			
-		while(true){						
+		while(true){		
+			try {
+				Simulador.sinc.acquire();
+			} catch (InterruptedException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			}
 			Cliente c = new Cliente();
 			c= null;
 			//semáforo de exclusão mútua para acesso a fila de espera
@@ -35,14 +36,13 @@ public class Massagista extends Thread {
 							c = Simulador.fila.removeCliente(i);
 							c.getServicos().remove(j);
 							tempo_servico = Math.random()*Simulador.pesoMassagem;
-							Simulador.n--;
-							m =Simulador.n;
 							break;
 						}
 					}
 					if(c != null ){
 						break;
-					}
+					}else
+						Simulador.sinc.release();
 				}
 				//Libero a fila de espera
 				Simulador.mutualEx.release();
@@ -73,11 +73,8 @@ public class Massagista extends Thread {
 					try {
 						Simulador.mutualEx.acquire();
 						Simulador.fila.insereCliente(c);
-						Simulador.n++;
 						Simulador.mutualEx.release();
-						if(Simulador.n == 1){
-							Simulador.sinc.release(14);
-						}
+						Simulador.sinc.release();
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -86,11 +83,9 @@ public class Massagista extends Thread {
 					try {
 						Simulador.mutualExCaixa.acquire();
 							Simulador.filaCaixa.insereCliente(c);
-							Simulador.nc++;
 						Simulador.mutualExCaixa.release();
-						if(Simulador.nc == 1){
-							Simulador.sincCaixa.release();
-						}
+						Simulador.sincCaixa.release();
+						
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -99,18 +94,15 @@ public class Massagista extends Thread {
 						
 				}
 				
-				if(m == 0){
-					try {
-						Simulador.sinc.acquire();
-					} catch (InterruptedException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-				}
-				//Checagem. Pode apagar depois
+				
 				
 				System.out.println("Mass"+currentThread().getId()+" Tamanho da fila: " +Simulador.fila.size());
 				
+			}
+			//Checagem. Pode apagar depois
+			if(Simulador.salaoFechado && Simulador.fila.size()==0){
+				//computar faturameto da thread
+				break;
 			}
 		}
 	}

@@ -15,6 +15,14 @@ public class Controle extends Thread {
 					else
 						Janela.jListaClientes.setText("Vazia");
 				Simulador.mutualEx.release();
+				
+				Simulador.mutualExCaixa.acquire();
+					if(Simulador.filaCaixa.size() >0){
+						Janela.jTextPane2.setText(FilaEspera.imprime(Simulador.filaCaixa));
+					}else
+						Janela.jTextPane2.setText("Vazia");
+				Simulador.mutualExCaixa.release();
+				
 				synchronized (this) {
 					try {
 						wait(500);
