@@ -9,16 +9,26 @@ import view.Simulador;
 public class ChegadaClientes extends Thread {
 	// lambda é a taxa de clientes que chegam por segundo
 	// preferencialmente deve ser entre 0 e 1
-	private  double lambda = 1.0;
+	
 	private GeraServico gs =  new GeraServico() ;
 	private JFrame view;
 	
 	public void run(){
+		double tempoEntreChegadas =  (- Math.log(Math.random())/Simulador.lambda)*1000;//primeira chegada
+		synchronized (this) {
+			try {
+				//Primeira Chegada
+				wait((long)tempoEntreChegadas);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		while((System.currentTimeMillis()- Simulador.tempoInicial)/1000 < Simulador.horarioComercial){
 			
+			System.out.println("Inicio : "+( System.currentTimeMillis() - Simulador.tempoInicial)/1000);
 			//chegadas exponencial, mas podemos usar tb o que foi especificado
 			//de chegadas entre 1 e 5 unidades de tempo
-			double tempoEntreChegadas =  (- Math.log(Math.random())/lambda)*1000;
+			 tempoEntreChegadas =  (- Math.log(Math.random())/Simulador.lambda)*1000;
 			
 		    //Instancio um novo cliente
 			Cliente c = new Cliente();
@@ -36,7 +46,7 @@ public class ChegadaClientes extends Thread {
 					Simulador.n++;
 				Simulador.mutualEx.release();
 				if(Simulador.n == 1){
-					Simulador.sinc.release(5);
+					Simulador.sinc.release(14);
 				}
 			
 			} catch (InterruptedException e1) {
@@ -45,17 +55,18 @@ public class ChegadaClientes extends Thread {
 			}
 				
 				
-			//Checagem. Pode apagar depois
-		    System.out.println(c.getTempoChegada());
+			
 			synchronized (this) {
 				try {
 					//a thread de chegadas para até o tempo da próxima chegada
+					System.out.println("Dormindo");
 					wait((long)tempoEntreChegadas);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
-			
+			//Checagem. Pode apagar depois
+			System.out.println("Fim : "+ (System.currentTimeMillis() - Simulador.tempoInicial)/1000);
 			
 			
 			

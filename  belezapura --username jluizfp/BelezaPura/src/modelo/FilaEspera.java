@@ -31,10 +31,10 @@ public class FilaEspera {
 		if(lista.size()>1){
 			ordenaLista(0,lista.size()-1);
 		}
-		Janela.jListaClientes.setText(imprime(lista));
+		
 	}
 	
-	private String imprime(Vector<Cliente> clientes) {
+	public static String imprime(FilaEspera clientes) {
 		
 		String t = "";
 		
@@ -50,7 +50,7 @@ public class FilaEspera {
 	}
 	public Cliente removeCliente(int i){
 		Cliente r = lista.remove(i);
-		Janela.jListaClientes.setText(imprime(lista));
+		//Janela.jListaClientes.setText(imprime(lista));
 		return r;
 	}
 	public Cliente get(int i){

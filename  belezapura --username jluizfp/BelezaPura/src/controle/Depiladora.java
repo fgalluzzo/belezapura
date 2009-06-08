@@ -82,15 +82,39 @@ public class Depiladora extends Thread {
 					}
 				}
 				
-				//Insiro ele de volta na fila de espera
-				try {
-					Simulador.mutualEx.acquire();
-					Simulador.fila.insereCliente(c);
-					Simulador.mutualEx.release();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				
+				if(c.getServicos().size() > 0){
+					//Insiro ele de volta na fila de espera
+					try {
+						Simulador.mutualEx.acquire();
+						Simulador.fila.insereCliente(c);
+						Simulador.n++;
+						m = Simulador.n;
+						Simulador.mutualEx.release();
+						if(Simulador.n == 1){
+							Simulador.sinc.release(14);
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else{
+					try {
+						Simulador.mutualExCaixa.acquire();
+						Simulador.filaCaixa.insereCliente(c);
+						Simulador.nc++;
+					Simulador.mutualExCaixa.release();
+						if(Simulador.nc == 1){
+							Simulador.sincCaixa.release();
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+						
+						
 				}
+				
 				if(m == 0){
 					try {
 						Simulador.sinc.acquire();
@@ -101,8 +125,7 @@ public class Depiladora extends Thread {
 				}
 				//Checagem. Pode apagar depois
 				
-				System.out.println("Tamanho da fila: " +Simulador.fila.size());
-				System.out.println(currentThread().getId());
+				System.out.println("Dep"+currentThread().getId()+" Tamanho da fila: " +Simulador.fila.size());
 			}
 		}
 	}
