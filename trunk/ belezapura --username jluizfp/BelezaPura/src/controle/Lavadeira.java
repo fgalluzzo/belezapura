@@ -67,15 +67,23 @@ public class Lavadeira extends Thread {
 						e.printStackTrace();
 					}
 				}
-				//Insiro ele de volta na fila de espera
-				try {
-					Simulador.mutualEx.acquire();
-					Simulador.fila.insereCliente(c);
-					Simulador.mutualEx.release();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				
+				if(c.getServicos()!=null){
+					//Insiro ele de volta na fila de espera
+					try {
+						Simulador.mutualEx.acquire();
+							Simulador.fila.insereCliente(c);
+							Simulador.n++;
+						Simulador.mutualEx.release();
+						if(Simulador.n == 1){
+							Simulador.sinc.release(14);
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
+			
 				if(m == 0){
 					try {
 						Simulador.sincLav.acquire();
