@@ -6,6 +6,7 @@ public class Cliente {
 
 	private double tempoChegada;
 	private Vector<Servico> servicos;
+	private int gastou =0;
 	
 	public void setTempoChegada(double codChegada) {
 		this.tempoChegada = codChegada;
@@ -31,5 +32,13 @@ public class Cliente {
 		}
 		
 		return s;
+	}
+
+	public void setGastou(int gastou) {
+		this.gastou += gastou;
+	}
+
+	public int getGastou() {
+		return gastou;
 	}
 }

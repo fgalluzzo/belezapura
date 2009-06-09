@@ -1,5 +1,6 @@
 package controle;
 
+import modelo.FilaCaixa;
 import modelo.FilaEspera;
 import view.Janela;
 import view.Simulador;
@@ -18,7 +19,7 @@ public class Controle extends Thread {
 				
 				Simulador.mutualExCaixa.acquire();
 					if(Simulador.filaCaixa.size() >0){
-						Janela.jTextPane2.setText(FilaEspera.imprime(Simulador.filaCaixa));
+						Janela.jTextPane2.setText(FilaCaixa.imprime(Simulador.filaCaixa));
 					}else
 						Janela.jTextPane2.setText("Vazia");
 				Simulador.mutualExCaixa.release();

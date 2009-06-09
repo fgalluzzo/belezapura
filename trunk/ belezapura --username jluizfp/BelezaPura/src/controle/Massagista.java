@@ -34,6 +34,7 @@ public class Massagista extends Thread {
 						//Se for massagem -> retira o serviço de massagem 
 						if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.MASSAGEM))){
 							c = Simulador.fila.removeCliente(i);
+							c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
 							c.getServicos().remove(j);
 							tempo_servico = Math.random()*Simulador.pesoMassagem;
 							break;
@@ -96,7 +97,7 @@ public class Massagista extends Thread {
 				
 				
 				
-				System.out.println("Mass"+currentThread().getId()+" Tamanho da fila: " +Simulador.fila.size());
+				
 				
 			}
 			//Checagem. Pode apagar depois

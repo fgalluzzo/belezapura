@@ -34,6 +34,7 @@ public class Depiladora extends Thread {
 						//Se for depilação -> retira o serviço de depilação 
 						if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.DEPILACAO))){
 							c = Simulador.fila.removeCliente(i);
+							c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
 							c.getServicos().remove(j);
 							tempo_servico = Math.random()*Simulador.pesoDepilacao;
 							break;
@@ -111,9 +112,7 @@ public class Depiladora extends Thread {
 				}
 				
 				
-				//Checagem. Pode apagar depois
 				
-				System.out.println("Dep"+currentThread().getId()+" Tamanho da fila: " +Simulador.fila.size());
 			}
 			if(Simulador.salaoFechado && Simulador.fila.size()==0){
 				//computar faturameto da thread

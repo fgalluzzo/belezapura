@@ -41,7 +41,6 @@ public class GeraServico {
 			numServicos = 3;
 		else
 			numServicos = 2;
-		//numServicos = 5;
 		       
 		/*Os serviï¿½os tambï¿½m sï¿½o procurados segundo um percentual mï¿½dio de 50% para cor-
 		te, 40% para penteado, 30% para pedicure, 20% para depilaï¿½ï¿½o, 15% para massa-
@@ -68,44 +67,45 @@ public class GeraServico {
 			range = Math.random();
 			
 				
-			if(range <= 0.2725 && !(temServico[0]) ){//Corte
+			if(range <= 0.2525 && !(temServico[0]) ){//Corte
 				
 				servicos.add(servicosDisponiveis[6]);//Lavagem
 				servicos.add(servicosDisponiveis[1]);
 				temServico[0] = true;
 				
-			}else if(range >0.2725 && range <=0.3725 && !(temServico[0])){//Corte e penteado
+			}else if(range >0.2525 && range <=0.4025 && !(temServico[0])){//Corte e penteado
 				
 				servicos.add(servicosDisponiveis[6]);//Lavagem
 				servicos.add(servicosDisponiveis[2]);
 				temServico[0] = true;
 				i++;//corte e penteado contam como 2 serviï¿½os
 				
-			}else if(range > 0.3725 && range <=0.5805 && !(temServico[0])){//penteado
+			}else if(range > 0.4025 && range <=0.5805 && !(temServico[0])){//penteado
 				
 				servicos.add(servicosDisponiveis[0]);
 				temServico[0] = true;
 				
 			}else if(range > 0.5805 && range <=0.774 && !(temServico[1])){//pedicure
 				
-				servicos.add(servicosDisponiveis[4]);
+				servicos.add(servicosDisponiveis[3]);
 				temServico[1] = true;
 				
 			}else if(range >0.774 && range <=0.903 && !(temServico[2])){//depilacao
 				
-				servicos.add(servicosDisponiveis[5]);
+				servicos.add(servicosDisponiveis[4]);
 				temServico[2] = true;
 				
 			}else if(range >0.903 && !(temServico[3])){//massagem
 				
-				servicos.add(servicosDisponiveis[3]);
+				servicos.add(servicosDisponiveis[5]);
 				temServico[3] = true;
-			}else{
+			}else{//Quando gera um número aleatório de mesmo range que algum
+				//que já possui entro aqui e adiciono o próximo serviço que não tem
 					for (int j = 0; j<4;j++){
 						if(!temServico[j]){	
 							if(j ==0){
 								
-								int m = (int)(Math.random()*20)%3;
+								int m = (int)(Math.random()*100)%3;
 								if(m == 0)
 									servicos.add(servicosDisponiveis[m]);
 								else{

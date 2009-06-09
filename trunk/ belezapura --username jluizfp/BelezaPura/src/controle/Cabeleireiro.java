@@ -35,6 +35,7 @@ public class Cabeleireiro extends Thread {
 							
 							if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.LAVAGEM))){
 								c = Simulador.fila.removeCliente(i);
+								c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
 								c.getServicos().remove(j);
 								//System.out.println("Cliente removido: " + i + " - " + c.imprimeServicos(c.getServicos()));
 								//exclusão mútua para a fila de lavagem
@@ -48,6 +49,7 @@ public class Cabeleireiro extends Thread {
 							//Se for só corte -> retira o serviço de corte 
 							if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.CORTE))){
 								c = Simulador.fila.removeCliente(i);
+								c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
 								c.getServicos().remove(j);
 								tempo_servico = Math.random()*Simulador.pesoCorte;
 								break;
@@ -56,12 +58,14 @@ public class Cabeleireiro extends Thread {
 							
 							if(Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.CORTE_E_PENTEADO)){
 								c = Simulador.fila.removeCliente(i);
+								c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
 								c.getServicos().remove(j);					
 								tempo_servico = Math.random()*Simulador.pesoCortePenteado;
 								break;
 							}
 							if(Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.PENTEADO)){
 								c = Simulador.fila.removeCliente(i);
+								c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
 								c.getServicos().remove(j);					
 								tempo_servico = Math.random()*Simulador.pesoPenteado;
 								break;
@@ -156,8 +160,7 @@ public class Cabeleireiro extends Thread {
 					}
 					
 					
-					//Checagem. Pode apagar depois
-					System.out.println("Cab"+currentThread().getId()+" Tamanho da fila: " +Simulador.fila.size());
+				
 				}
 				
 				if(Simulador.salaoFechado && Simulador.fila.size()==0){
