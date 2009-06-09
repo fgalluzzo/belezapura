@@ -25,7 +25,6 @@ public class ChegadaClientes extends Thread {
 		}
 		while((System.currentTimeMillis()- Simulador.tempoInicial)/1000 < Simulador.horarioComercial){
 			
-			System.out.println("Inicio : "+( System.currentTimeMillis() - Simulador.tempoInicial)/1000);
 			//chegadas exponencial, mas podemos usar tb o que foi especificado
 			//de chegadas entre 1 e 5 unidades de tempo
 			 tempoEntreChegadas =  (- Math.log(Math.random())/Simulador.lambda)*1000;
@@ -37,13 +36,15 @@ public class ChegadaClientes extends Thread {
 			c.setServicos(gs.gerador());
 			//Atribuo o tempo de chegada dele
 			c.setTempoChegada((double)(System.currentTimeMillis() - Simulador.tempoInicial)/1000);
-			
+			System.out.println("Cliente"+c.getTempoChegada()+ " - ");
+			System.out.println(c.imprimeServicos(c.getServicos()));	
 			//semaforo de exclusão mútua para a fila de espera
 			try {
 				Simulador.mutualEx.acquire();
 				//Insiro o cliente na fila de espera
 					Simulador.fila.insereCliente(c);
 				Simulador.mutualEx.release();
+				//Semáforo de sincronização para avisar que uma pessoa foi inserida na fila
 				Simulador.sinc.release();
 					
 				
@@ -58,20 +59,22 @@ public class ChegadaClientes extends Thread {
 			synchronized (this) {
 				try {
 					//a thread de chegadas para até o tempo da próxima chegada
-					System.out.println("Dormindo");
+					
 					wait((long)tempoEntreChegadas);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 			//Checagem. Pode apagar depois
-			System.out.println("Fim : "+ (System.currentTimeMillis() - Simulador.tempoInicial)/1000);
 			
 			
+				
+
 			
 		}
 		Simulador.salaoFechado = true;
 		System.out.println("Salão Fechado");
+		
 	}
 	
 	

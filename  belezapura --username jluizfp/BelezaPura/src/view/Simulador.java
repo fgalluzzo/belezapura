@@ -1,13 +1,11 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
-import modelo.Cliente;
+import modelo.FilaCaixa;
 import modelo.FilaEspera;
 import controle.Cabeleireiro;
+import controle.Caixa;
 import controle.ChegadaClientes;
 import controle.Controle;
 import controle.Depiladora;
@@ -28,20 +26,22 @@ public class Simulador {
     public static final int pesoPenteado = 4000;
     public static final int pesoCortePenteado = 5000;
     public static final int pesoLavagem = 1000;
-    public static final int pesoMassagem = 2000;
+    public static final int pesoMassagem = 1500;
     public static final int pesoPedicure = 2500;
     public static final int pesoDepilacao =3000;
+    public static final int pesoCaixa = 2000;
     
     public static final int horarioComercial = 120;
     
-    public static  double lambda = 2.0;
+    public static  double lambda = 1.5;
     
 	public static double tempoInicial;
 	//public static double tempoSimulacao;
 	public static FilaEspera fila;
 	
 	public static FilaEspera filaLavagem;
-	public static FilaEspera filaCaixa;
+	public static FilaCaixa filaCaixa;
+	
 		
 	
 	public static Semaphore mutualEx;
@@ -67,7 +67,7 @@ public class Simulador {
 		
 		fila = new FilaEspera();
 		filaLavagem = new FilaEspera();
-		filaCaixa = new FilaEspera();
+		filaCaixa = new FilaCaixa();
 		
 		
 		
@@ -104,6 +104,11 @@ public class Simulador {
 		
 		Massagista mas1 = new Massagista();
 		mas1.start();
+		
+		Caixa cx1 = new Caixa();
+		cx1.start();
+		Caixa cx2 = new Caixa();
+		cx2.start();
 		
 		
 		

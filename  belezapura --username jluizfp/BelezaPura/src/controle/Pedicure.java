@@ -34,7 +34,9 @@ public class Pedicure extends Thread {
 						//Se for para fazer os pés -> retira o serviço de pedicure 
 						if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.PEDICURE))){
 							c = Simulador.fila.removeCliente(i);
+							c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
 							c.getServicos().remove(j);
+							
 							tempo_servico = Math.random()*Simulador.pesoPedicure;
 							break;
 						}
@@ -115,9 +117,7 @@ public class Pedicure extends Thread {
 				}
 				
 				
-				//Checagem. Pode apagar depois
 				
-				System.out.println("Ped"+ currentThread().getId()+ " Tamanho da fila: " +Simulador.fila.size());
 
 			}
 			if(Simulador.salaoFechado && Simulador.fila.size()==0){
