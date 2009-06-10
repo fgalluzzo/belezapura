@@ -1,15 +1,18 @@
 package controle;
 
+import java.text.DecimalFormat;
+
 import javax.swing.ImageIcon;
 
 import modelo.Cliente;
-import modelo.TipoServico;
 import view.Janela;
 import view.Simulador;
 
 public class Caixa extends Thread {
+	
 	private double tempo_servico;
-	private int totalArrecadado;
+	private DecimalFormat df = new DecimalFormat("R$ ###,###,##0.00");
+	
 	public void run(){
 		while(true){
 			try {
@@ -20,10 +23,11 @@ public class Caixa extends Thread {
 			}
 			Cliente c = new Cliente();
 			try {
-				//Exclusão mútua para fila do caixa
+				//Exclusï¿½o mï¿½tua para fila do caixa
 				Simulador.mutualExCaixa.acquire();
 					c = Simulador.filaCaixa.removeCliente();
-					totalArrecadado += c.getGastou();
+					Janela.valorRecolhido += c.getGastou();
+					Janela.jLabelFaturamentoValor.setText(df.format(Janela.valorRecolhido));
 					tempo_servico = Math.random()*Simulador.pesoCaixa;
 				//Libero a fila de espera do caixa
 				Simulador.mutualExCaixa.release();
@@ -57,8 +61,6 @@ public class Caixa extends Thread {
 					e.printStackTrace();
 				}
 			}
-			System.out.println("Caixa"+currentThread().getId()%2+" recebeu = "+totalArrecadado);
-			
 		}
 	}
 }

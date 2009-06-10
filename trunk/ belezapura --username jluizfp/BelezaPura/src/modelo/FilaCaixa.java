@@ -1,7 +1,6 @@
 package modelo;
 
 import java.util.Vector;
-import view.Janela;
 
 public class FilaCaixa {
 	
