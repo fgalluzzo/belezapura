@@ -8,6 +8,7 @@ import controle.Cabeleireiro;
 import controle.Caixa;
 import controle.ChegadaClientes;
 import controle.Controle;
+import controle.Cronometro;
 import controle.Depiladora;
 import controle.Lavadeira;
 import controle.Massagista;
@@ -31,7 +32,11 @@ public class Simulador {
     public static final int pesoDepilacao =3000;
     public static final int pesoCaixa = 2000;
     
-    public static final int horarioComercial = 120;
+    public static final int horaAberturaEmSegundos = 10 * 60 * 60;
+    public static final int horaFechamentoEmSegundos = 22 * 60 * 60;
+    public static final int tempoExpedienteEmSegundos = horaFechamentoEmSegundos - horaAberturaEmSegundos;
+    
+    public static final int horarioComercial = 10;
     
     public static  double lambda = 1.5;
     
@@ -41,8 +46,6 @@ public class Simulador {
 	
 	public static FilaEspera filaLavagem;
 	public static FilaCaixa filaCaixa;
-	
-		
 	
 	public static Semaphore mutualEx;
 	public static Semaphore sinc;
@@ -69,8 +72,8 @@ public class Simulador {
 		filaLavagem = new FilaEspera();
 		filaCaixa = new FilaCaixa();
 		
-		
-		
+		Cronometro cronometro = new Cronometro();
+		cronometro.start();
 		
 		Cabeleireiro cab1 = new Cabeleireiro();
 		cab1.start();
@@ -109,8 +112,6 @@ public class Simulador {
 		cx1.start();
 		Caixa cx2 = new Caixa();
 		cx2.start();
-		
-		
 		
 		ChegadaClientes cc = new ChegadaClientes();
 		cc.start();

@@ -1,13 +1,16 @@
 package controle;
 
+import java.sql.Date;
+
 import javax.swing.JFrame;
 
 import modelo.Cliente;
 import util.GeraServico;
+import view.Janela;
 import view.Simulador;
 
 public class ChegadaClientes extends Thread {
-	// lambda é a taxa de clientes que chegam por segundo
+	// lambda ï¿½ a taxa de clientes que chegam por segundo
 	// preferencialmente deve ser entre 0 e 1
 	
 	private GeraServico gs =  new GeraServico() ;
@@ -32,19 +35,21 @@ public class ChegadaClientes extends Thread {
 		    //Instancio um novo cliente
 			Cliente c = new Cliente();
 			
-			//Atribuo serviços aleatórios ao cliente
+			//Atribuo serviï¿½os aleatï¿½rios ao cliente
 			c.setServicos(gs.gerador());
 			//Atribuo o tempo de chegada dele
 			c.setTempoChegada((double)(System.currentTimeMillis() - Simulador.tempoInicial)/1000);
-			System.out.println("Cliente"+c.getTempoChegada()+ " - ");
-			System.out.println(c.imprimeServicos(c.getServicos()));	
-			//semaforo de exclusão mútua para a fila de espera
+			
+			/*System.out.println("Cliente"+c.getTempoChegada()+ " - ");
+			System.out.println(c.imprimeServicos(c.getServicos()));*/	
+			
+			//semaforo de exclusï¿½o mï¿½tua para a fila de espera
 			try {
 				Simulador.mutualEx.acquire();
 				//Insiro o cliente na fila de espera
 					Simulador.fila.insereCliente(c);
 				Simulador.mutualEx.release();
-				//Semáforo de sincronização para avisar que uma pessoa foi inserida na fila
+				//Semï¿½foro de sincronizaï¿½ï¿½o para avisar que uma pessoa foi inserida na fila
 				Simulador.sinc.release();
 					
 				
@@ -58,22 +63,19 @@ public class ChegadaClientes extends Thread {
 			
 			synchronized (this) {
 				try {
-					//a thread de chegadas para até o tempo da próxima chegada
+					//a thread de chegadas para atï¿½ o tempo da prï¿½xima chegada
 					
 					wait((long)tempoEntreChegadas);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
-			//Checagem. Pode apagar depois
-			
-			
-				
 
 			
 		}
+
 		Simulador.salaoFechado = true;
-		System.out.println("Salão Fechado");
+		System.out.println("Salao Fechado");
 		
 	}
 	
