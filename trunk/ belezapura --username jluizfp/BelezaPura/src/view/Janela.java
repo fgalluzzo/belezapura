@@ -551,7 +551,7 @@ public class Janela extends javax.swing.JFrame {
 
         //jLabelRelogioLogo.setText("jLabel1");
 
-        jLabelHora.setText("00:00");
+        jLabelHora.setText("10:00");
 
         javax.swing.GroupLayout jPanelRelogioLayout = new javax.swing.GroupLayout(jPanelRelogio);
         jPanelRelogio.setLayout(jPanelRelogioLayout);
@@ -652,7 +652,7 @@ public class Janela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabelHora;
+    public static javax.swing.JLabel jLabelHora;
     private javax.swing.JLabel jLabelCabeleireira1;
     private javax.swing.JLabel jLabelCabeleireira2;
     private javax.swing.JLabel jLabelCabeleireira3;
