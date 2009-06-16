@@ -5,23 +5,28 @@ import view.Simulador;
 
 public class Cronometro extends Thread {
 
-	private double horaRealEmSegundos;
+	private double horaD;
+	private double minutoD;
+	private int hora;
+	private int minuto;
 	private int cont = 0;
 	
 	public void run() {
 
-		while (cont < Simulador.horarioComercial && !Simulador.salaoFechado) {
+		while(!Simulador.salaoFechado) {
 			try {
-				sleep(1000);
-				horaRealEmSegundos = ((Simulador.tempoExpedienteEmSegundos*cont)/Simulador.horarioComercial) + Simulador.horaAberturaEmSegundos; 
-				cont++;
-				int hora = (int) horaRealEmSegundos / 3600;
-				int minuto = (int) horaRealEmSegundos % 3600;
-				minuto = minuto/100;
+				sleep(100);
+				horaD = ((System.currentTimeMillis()- Simulador.tempoInicial)/1000);
+				horaD *=(Simulador.tempoExpedienteEmSegundos/Simulador.horarioComercial);
+				hora = (int) horaD;
 				
-				//System.out.println(hora + " : " + minuto);
+				minutoD = ((System.currentTimeMillis()- Simulador.tempoInicial)/1000);
+				minutoD *=(Simulador.tempoExpedienteEmSegundos/Simulador.horarioComercial*60);
+				minutoD %= 60;
+				minuto = (int)minutoD;
 				
-				Janela.jLabelHora.setText(String.format("%02d:%02d", hora, minuto));
+				
+				Janela.jLabelHora.setText(String.format("%02d:%02d", 9+hora, minuto));
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();

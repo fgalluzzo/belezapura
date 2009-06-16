@@ -28,15 +28,15 @@ public class Simulador {
     public static final int pesoCortePenteado = 5000;
     public static final int pesoLavagem = 1000;
     public static final int pesoMassagem = 1500;
-    public static final int pesoPedicure = 2500;
+    public static final int pesoPedicure =2500;
     public static final int pesoDepilacao =3000;
     public static final int pesoCaixa = 2000;
     
-    public static final int horaAberturaEmSegundos = 10 * 60 * 60;
-    public static final int horaFechamentoEmSegundos = 22 * 60 * 60;
-    public static final int tempoExpedienteEmSegundos = horaFechamentoEmSegundos - horaAberturaEmSegundos;
+    public static final int horaAberturaEmSegundos = 9 ;
+    public static final int horaFechamentoEmSegundos = 19 ;
+    public static final double tempoExpedienteEmSegundos = horaFechamentoEmSegundos - horaAberturaEmSegundos;
     
-    public static final int horarioComercial = 10;
+    public static final double horarioComercial = 30;
     
     public static  double lambda = 1.5;
     
