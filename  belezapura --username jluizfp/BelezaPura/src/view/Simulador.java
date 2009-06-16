@@ -38,7 +38,7 @@ public class Simulador {
     
     public static final double horarioComercial = 30;
     
-    public static  double lambda = 1.5;
+    public static  double lambda = 1.0;
     
 	public static double tempoInicial;
 	//public static double tempoSimulacao;
@@ -53,6 +53,8 @@ public class Simulador {
 	public static Semaphore sincLav;
 	public static Semaphore mutualExCaixa;
 	public static Semaphore sincCaixa;
+	
+	public static int fatCab[] = new int[5];
 	
 	public static boolean salaoFechado = false;
 	

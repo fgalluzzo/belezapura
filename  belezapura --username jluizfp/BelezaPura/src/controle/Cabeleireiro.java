@@ -35,7 +35,7 @@ public class Cabeleireiro extends Thread {
 							
 							if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.LAVAGEM))){
 								c = Simulador.fila.removeCliente(i);
-								c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
+								c.setGastou(c.getServicos().get(j).getTipoServico().getValor());								
 								c.getServicos().remove(j);
 								//System.out.println("Cliente removido: " + i + " - " + c.imprimeServicos(c.getServicos()));
 								//exclusão mútua para a fila de lavagem
@@ -50,6 +50,8 @@ public class Cabeleireiro extends Thread {
 							if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.CORTE))){
 								c = Simulador.fila.removeCliente(i);
 								c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
+								//computo o quanto esse cabeleireiro ganha nesse serviço
+								Simulador.fatCab[(int) (currentThread().getId() % 5)] += c.getGastou()*0.4;
 								c.getServicos().remove(j);
 								tempo_servico = Math.random()*Simulador.pesoCorte;
 								break;
@@ -59,6 +61,8 @@ public class Cabeleireiro extends Thread {
 							if(Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.CORTE_E_PENTEADO)){
 								c = Simulador.fila.removeCliente(i);
 								c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
+								//computo o quanto esse cabeleireiro ganha nesse serviço
+								Simulador.fatCab[(int) (currentThread().getId() % 5)] += c.getGastou()*0.4;
 								c.getServicos().remove(j);					
 								tempo_servico = Math.random()*Simulador.pesoCortePenteado;
 								break;
@@ -66,6 +70,8 @@ public class Cabeleireiro extends Thread {
 							if(Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.PENTEADO)){
 								c = Simulador.fila.removeCliente(i);
 								c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
+								//computo o quanto esse cabeleireiro ganha nesse serviço
+								Simulador.fatCab[(int) (currentThread().getId() % 5)] += c.getGastou()*0.4;
 								c.getServicos().remove(j);					
 								tempo_servico = Math.random()*Simulador.pesoPenteado;
 								break;
@@ -88,7 +94,7 @@ public class Cabeleireiro extends Thread {
 					
 					synchronized (this) {
 						try {
-							int i = (int)currentThread().getId()%5;
+							int i = (int) (currentThread().getId() % 5);
 							switch(i){
 								case 0:
 									Janela.jLabelCabeloStatus1.setIcon(new ImageIcon("imgs/ocup.gif"));
@@ -163,10 +169,7 @@ public class Cabeleireiro extends Thread {
 				
 				}
 				
-				if(Simulador.salaoFechado && Simulador.fila.size()==0){
-					//computar faturameto da thread
-					//break;
-				}
+				
 			}
 			
 			
