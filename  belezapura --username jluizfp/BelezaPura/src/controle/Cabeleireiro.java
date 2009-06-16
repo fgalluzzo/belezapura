@@ -165,7 +165,7 @@ public class Cabeleireiro extends Thread {
 				
 				if(Simulador.salaoFechado && Simulador.fila.size()==0){
 					//computar faturameto da thread
-					break;
+					//break;
 				}
 			}
 			
