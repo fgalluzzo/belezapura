@@ -639,7 +639,9 @@ public class Janela extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {  
+    	for(int i = 0;i<5;i++)
+    		System.out.println("Cab"+ (i+1) +" faturou " + Simulador.fatCab[i]);
         System.exit(1);
     }                                        
 
