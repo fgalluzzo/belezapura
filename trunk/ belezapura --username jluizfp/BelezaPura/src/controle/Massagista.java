@@ -103,7 +103,7 @@ public class Massagista extends Thread {
 			//Checagem. Pode apagar depois
 			if(Simulador.salaoFechado && Simulador.fila.size()==0){
 				//computar faturameto da thread
-				break;
+				//break;
 			}
 		}
 	}
