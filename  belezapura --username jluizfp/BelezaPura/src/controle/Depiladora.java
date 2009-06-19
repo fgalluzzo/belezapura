@@ -35,7 +35,8 @@ public class Depiladora extends Thread {
 						if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.DEPILACAO))){
 							c = Simulador.fila.removeCliente(i);
 							c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
-							Simulador.fatDep[(int) (currentThread().getId() % 2)] += c.getGastou()*0.4;
+							//computo o quanto essa depiladora ganha nesse serviço - 40% do serviço
+							Simulador.fatDep[(int) (currentThread().getId() % 2)] += c.getServicos().get(j).getTipoServico().getValor()*0.4;
 							c.getServicos().remove(j);
 							tempo_servico = Math.random()*Simulador.pesoDepilacao;
 							break;

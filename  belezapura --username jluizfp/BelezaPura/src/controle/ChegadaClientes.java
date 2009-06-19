@@ -34,7 +34,7 @@ public class ChegadaClientes extends Thread {
 			
 		    //Instancio um novo cliente
 			Cliente c = new Cliente();
-			
+			Simulador.N++;
 			//Atribuo servi�os aleat�rios ao cliente
 			c.setServicos(gs.gerador());
 			//Atribuo o tempo de chegada dele
