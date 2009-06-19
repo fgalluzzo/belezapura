@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.Toolkit;
 
@@ -552,6 +553,7 @@ public class Janela extends javax.swing.JFrame {
         //jLabelRelogioLogo.setText("jLabel1");
 
         jLabelHora.setText("10:00");
+        jLabelHora.setFont(new Font("Helvetica", Font.PLAIN, 26));
 
         javax.swing.GroupLayout jPanelRelogioLayout = new javax.swing.GroupLayout(jPanelRelogio);
         jPanelRelogio.setLayout(jPanelRelogioLayout);
@@ -642,6 +644,14 @@ public class Janela extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {  
     	for(int i = 0;i<5;i++)
     		System.out.println("Cab"+ (i+1) +" faturou " + Simulador.fatCab[i]);
+    	for(int i = 0;i<3;i++)
+    		System.out.println("Lav"+ (i+1) +" faturou " + Simulador.fatLav[i]);
+    	for(int i = 0;i<3;i++)
+    		System.out.println("Ped"+ (i+1) +" faturou " + Simulador.fatPed[i]);
+    	for(int i = 0;i<2;i++)
+    		System.out.println("Dep"+ (i+1) +" faturou " + Simulador.fatDep[i]);
+    	for(int i = 0;i<1;i++)
+    		System.out.println("Mas"+ (i+1) +" faturou " + Simulador.fatMas[i]);
         System.exit(1);
     }                                        
 

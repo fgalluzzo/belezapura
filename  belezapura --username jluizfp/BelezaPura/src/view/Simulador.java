@@ -55,6 +55,10 @@ public class Simulador {
 	public static Semaphore sincCaixa;
 	
 	public static int fatCab[] = new int[5];
+	public static int fatLav[] = new int[3];
+	public static int fatPed[] = new int[3];
+	public static int fatDep[] = new int[2];
+	public static int fatMas[] = new int[1];
 	
 	public static boolean salaoFechado = false;
 	
