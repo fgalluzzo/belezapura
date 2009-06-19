@@ -38,7 +38,7 @@ public class Simulador {
     
     public static final double horarioComercial = 30;
     
-    public static  double lambda = 1.0;
+    public static  double lambda = 2.0;
     
     public static int N;
 	public static double tempoInicial;
@@ -72,12 +72,13 @@ public class Simulador {
 		sincLav = new Semaphore(0);
 		sincCaixa = new Semaphore(0);
 		
-    
 		tempoInicial = System.currentTimeMillis();
 		
 		fila = new FilaEspera();
 		filaLavagem = new FilaEspera();
 		filaCaixa = new FilaCaixa();
+		
+		new Janela().setVisible(true);
 		
 		Cronometro cronometro = new Cronometro();
 		cronometro.start();
