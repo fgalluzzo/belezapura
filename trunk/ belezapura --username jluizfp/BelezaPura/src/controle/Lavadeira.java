@@ -5,6 +5,8 @@ import javax.swing.ImageIcon;
 import view.Janela;
 import view.Simulador;
 import modelo.Cliente;
+import modelo.Servico;
+import modelo.TipoServico;
 
 public class Lavadeira extends Thread {
 		
@@ -27,6 +29,8 @@ public class Lavadeira extends Thread {
 			try {
 				Simulador.mutualExLav.acquire();
 					c = Simulador.filaLavagem.removeCliente();
+					//computo o quanto essa lavadeira ganha nesse serviço - 40% do serviço
+					Simulador.fatLav[(int) (currentThread().getId() % 3)] += TipoServico.LAVAGEM.getValor()*0.4;
 				Simulador.mutualExLav.release();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block

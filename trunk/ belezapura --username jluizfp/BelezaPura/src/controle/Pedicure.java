@@ -35,8 +35,10 @@ public class Pedicure extends Thread {
 						if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.PEDICURE))){
 							c = Simulador.fila.removeCliente(i);
 							c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
-							Simulador.fatPed[(int) (currentThread().getId() % 3)] += c.getGastou()*0.4;
+							//computo o quanto essa pedicure ganha nesse serviço - 40% do serviço
+							Simulador.fatPed[(int) (currentThread().getId() % 3)] +=  c.getServicos().get(j).getTipoServico().getValor()*0.4;
 							c.getServicos().remove(j);
+							
 							tempo_servico = Math.random()*Simulador.pesoPedicure;
 							break;
 						}

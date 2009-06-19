@@ -35,7 +35,8 @@ public class Massagista extends Thread {
 						if((Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.MASSAGEM))){
 							c = Simulador.fila.removeCliente(i);
 							c.setGastou(c.getServicos().get(j).getTipoServico().getValor());
-							Simulador.fatMas[0] += c.getGastou()*0.4;
+							//computo o quanto esse massagista ganha nesse serviço - 40% do serviço
+							Simulador.fatMas += c.getServicos().get(j).getTipoServico().getValor()*0.4;
 							c.getServicos().remove(j);
 							tempo_servico = Math.random()*Simulador.pesoMassagem;
 							break;

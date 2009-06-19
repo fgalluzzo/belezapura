@@ -40,6 +40,7 @@ public class Simulador {
     
     public static  double lambda = 1.0;
     
+    public static int N;
 	public static double tempoInicial;
 	//public static double tempoSimulacao;
 	public static FilaEspera fila;
@@ -58,7 +59,8 @@ public class Simulador {
 	public static int fatLav[] = new int[3];
 	public static int fatPed[] = new int[3];
 	public static int fatDep[] = new int[2];
-	public static int fatMas[] = new int[1];
+	public static int fatMas ;
+	
 	
 	public static boolean salaoFechado = false;
 	
@@ -70,7 +72,6 @@ public class Simulador {
 		sincLav = new Semaphore(0);
 		sincCaixa = new Semaphore(0);
 		
-        new Janela().setVisible(true);
     
 		tempoInicial = System.currentTimeMillis();
 		
@@ -123,6 +124,8 @@ public class Simulador {
 		cc.start();
 		Controle cntrl = new Controle();
 		cntrl.start();
+		
+		 
 		
 	}
 
