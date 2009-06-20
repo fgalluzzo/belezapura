@@ -5,7 +5,6 @@ import javax.swing.ImageIcon;
 import view.Janela;
 import view.Simulador;
 import modelo.Cliente;
-import modelo.Servico;
 import modelo.TipoServico;
 
 public class Lavadeira extends Thread {

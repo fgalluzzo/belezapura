@@ -9,7 +9,6 @@ import view.Simulador;
 
 public class Massagista extends Thread {
 	
-	private int m;
 	private double tempo_servico;
 	
 	public void run(){
