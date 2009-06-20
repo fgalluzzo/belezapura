@@ -18,6 +18,9 @@ public class ChegadaClientes extends Thread {
 	
 	public void run(){
 		double tempoEntreChegadas =  (- Math.log(Math.random())/Simulador.lambda)*1000;//primeira chegada
+		if(tempoEntreChegadas<1)
+			tempoEntreChegadas+=1;
+		
 		synchronized (this) {
 			try {
 				//Primeira Chegada
@@ -31,7 +34,10 @@ public class ChegadaClientes extends Thread {
 			//chegadas exponencial, mas podemos usar tb o que foi especificado
 			//de chegadas entre 1 e 5 unidades de tempo
 			 tempoEntreChegadas =  (- Math.log(Math.random())/Simulador.lambda)*1000;
-			
+			 
+			 if(tempoEntreChegadas<1)
+					tempoEntreChegadas+=1;
+			 
 		    //Instancio um novo cliente
 			Cliente c = new Cliente();
 			Simulador.N++;
@@ -59,7 +65,7 @@ public class ChegadaClientes extends Thread {
 				e1.printStackTrace();
 			}
 				
-				
+			
 			
 			synchronized (this) {
 				try {
@@ -70,7 +76,7 @@ public class ChegadaClientes extends Thread {
 					e.printStackTrace();
 				}
 			}
-
+			
 			
 		}
 
