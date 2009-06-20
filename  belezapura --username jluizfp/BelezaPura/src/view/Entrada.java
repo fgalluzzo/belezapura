@@ -171,11 +171,16 @@ public class Entrada extends javax.swing.JFrame {
     	
     	Simulador.horaAberturaEmSegundos = Integer.parseInt(jTextFieldHorarioA.getText());
     	Simulador.horaFechamentoEmSegundos = Integer.parseInt(jTextFieldHorarioA1.getText());
+    	
     	this.setVisible(false);
     	iniciarSimulacao();
 	}
     
     private void iniciarSimulacao() {
+    	
+    	Simulador.tempoExpedienteEmSegundos = Simulador.horaFechamentoEmSegundos - Simulador.horaAberturaEmSegundos;
+    	Simulador.horarioComercial = 3*Simulador.tempoExpedienteEmSegundos;
+    	
     	Simulador.mutualEx = new Semaphore(1);
     	Simulador.mutualExLav = new Semaphore(1);
     	Simulador.mutualExCaixa = new Semaphore(1);
@@ -183,13 +188,15 @@ public class Entrada extends javax.swing.JFrame {
     	Simulador.sincLav = new Semaphore(0);
     	Simulador.sincCaixa = new Semaphore(0);
 		
-    	Simulador.tempoInicial = System.currentTimeMillis();
+    	
 		
     	Simulador.fila = new FilaEspera();
     	Simulador.filaLavagem = new FilaEspera();
     	Simulador.filaCaixa = new FilaCaixa();
 		
 		new Janela().setVisible(true);
+		
+		Simulador.tempoInicial = System.currentTimeMillis();
 		
 		Cronometro cronometro = new Cronometro();
 		cronometro.start();

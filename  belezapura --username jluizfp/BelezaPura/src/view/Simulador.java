@@ -23,13 +23,13 @@ public class Simulador {
     public static final int pesoDepilacao =3000;
     public static final int pesoCaixa = 2000;
     
-    public static int horaAberturaEmSegundos = 9 ;
-    public static int horaFechamentoEmSegundos = 19 ;
-    public static final double tempoExpedienteEmSegundos = horaFechamentoEmSegundos - horaAberturaEmSegundos;
+    public static int horaAberturaEmSegundos;
+    public static int horaFechamentoEmSegundos  ;
+    public static  double tempoExpedienteEmSegundos ;
     
-    public static final double horarioComercial = 30;
+    public static double horarioComercial;
     
-    public static  double lambda = 2.0;
+    public static  double lambda ;
     
     public static int N;
 	public static double tempoInicial;

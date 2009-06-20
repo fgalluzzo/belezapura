@@ -24,7 +24,7 @@ public class Cronometro extends Thread {
 				minuto = (int)minutoD;
 				
 				
-				Janela.jLabelHora.setText(String.format("%02d:%02d", 9+hora, minuto));
+				Janela.jLabelHora.setText(String.format("%02d:%02d", Simulador.horaAberturaEmSegundos+hora, minuto));
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
