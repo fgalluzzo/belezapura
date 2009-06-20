@@ -9,8 +9,6 @@ public class Cronometro extends Thread {
 	private double minutoD;
 	private int hora;
 	private int minuto;
-	private int cont = 0;
-	
 	public void run() {
 
 		while(!Simulador.salaoFechado) {
