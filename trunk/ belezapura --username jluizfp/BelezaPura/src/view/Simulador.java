@@ -4,15 +4,6 @@ import java.util.concurrent.Semaphore;
 
 import modelo.FilaCaixa;
 import modelo.FilaEspera;
-import controle.Cabeleireiro;
-import controle.Caixa;
-import controle.ChegadaClientes;
-import controle.Controle;
-import controle.Cronometro;
-import controle.Depiladora;
-import controle.Lavadeira;
-import controle.Massagista;
-import controle.Pedicure;
 
 public class Simulador {
 	/*private final int pesoCortePent = 18;
@@ -32,8 +23,8 @@ public class Simulador {
     public static final int pesoDepilacao =3000;
     public static final int pesoCaixa = 2000;
     
-    public static final int horaAberturaEmSegundos = 9 ;
-    public static final int horaFechamentoEmSegundos = 19 ;
+    public static int horaAberturaEmSegundos = 9 ;
+    public static int horaFechamentoEmSegundos = 19 ;
     public static final double tempoExpedienteEmSegundos = horaFechamentoEmSegundos - horaAberturaEmSegundos;
     
     public static final double horarioComercial = 30;
@@ -63,71 +54,5 @@ public class Simulador {
 	
 	
 	public static boolean salaoFechado = false;
-	
-	public static void main(String[] args) {
-		mutualEx = new Semaphore(1);
-		mutualExLav = new Semaphore(1);
-		mutualExCaixa = new Semaphore(1);
-		sinc = new Semaphore(0);
-		sincLav = new Semaphore(0);
-		sincCaixa = new Semaphore(0);
-		
-		tempoInicial = System.currentTimeMillis();
-		
-		fila = new FilaEspera();
-		filaLavagem = new FilaEspera();
-		filaCaixa = new FilaCaixa();
-		
-		new Janela().setVisible(true);
-		
-		Cronometro cronometro = new Cronometro();
-		cronometro.start();
-		
-		Cabeleireiro cab1 = new Cabeleireiro();
-		cab1.start();
-		Cabeleireiro cab2 = new Cabeleireiro();
-		cab2.start();
-		Cabeleireiro cab3 = new Cabeleireiro();
-		cab3.start();
-		Cabeleireiro cab4 = new Cabeleireiro();
-		cab4.start();
-		Cabeleireiro cab5 = new Cabeleireiro();
-		cab5.start();
-		
-		Lavadeira lav1 = new Lavadeira();
-		lav1.start();
-		Lavadeira lav2 = new Lavadeira();
-		lav2.start();
-		Lavadeira lav3 = new Lavadeira();
-		lav3.start();
-		
-		Pedicure ped1 = new Pedicure();
-		ped1.start();
-		Pedicure ped2 = new Pedicure();
-		ped2.start();
-		Pedicure ped3 = new Pedicure();
-		ped3.start();
-		
-		Depiladora dep1 = new Depiladora();
-		dep1.start();
-		Depiladora dep2 = new Depiladora();
-		dep2.start();
-		
-		Massagista mas1 = new Massagista();
-		mas1.start();
-		
-		Caixa cx1 = new Caixa();
-		cx1.start();
-		Caixa cx2 = new Caixa();
-		cx2.start();
-		
-		ChegadaClientes cc = new ChegadaClientes();
-		cc.start();
-		Controle cntrl = new Controle();
-		cntrl.start();
-		
-		 
-		
-	}
 
 }

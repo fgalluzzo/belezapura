@@ -11,7 +11,6 @@ public class Janela extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	@SuppressWarnings("unused")
 	public static double valorRecolhido = 0;
 	
 	public Janela() {
@@ -575,7 +574,7 @@ public class Janela extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
-        jButton1.setText("Parar");
+        jButton1.setText("Gerar Relatorio");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -642,7 +641,7 @@ public class Janela extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {  
-    	for(int i = 0;i<5;i++)
+    	/*for(int i = 0;i<5;i++)
     		System.out.println("Cab"+ (i+1) +" faturou " + Simulador.fatCab[i]);
     	for(int i = 0;i<3;i++)
     		System.out.println("Lav"+ (i+1) +" faturou " + Simulador.fatLav[i]);
@@ -652,8 +651,9 @@ public class Janela extends javax.swing.JFrame {
     		System.out.println("Dep"+ (i+1) +" faturou " + Simulador.fatDep[i]);
     	System.out.println("Mas faturou "+ Simulador.fatMas);
     	System.out.println("Valor total " + valorRecolhido);
-    	System.out.println("Pessoas atendidas = "+Simulador.N);
-    	
+    	System.out.println("Pessoas atendidas = "+Simulador.N);*/
+    	this.setVisible(false);
+    	new RelatorioFinal().setVisible(true);
         //System.exit(1);
     }                                        
 

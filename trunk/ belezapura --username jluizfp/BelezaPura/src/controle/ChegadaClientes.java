@@ -1,12 +1,9 @@
 package controle;
 
-import java.sql.Date;
-
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import modelo.Cliente;
 import util.GeraServico;
-import view.Janela;
 import view.Simulador;
 
 public class ChegadaClientes extends Thread {
@@ -14,8 +11,6 @@ public class ChegadaClientes extends Thread {
 	// preferencialmente deve ser entre 0 e 1
 	
 	private GeraServico gs =  new GeraServico() ;
-	private JFrame view;
-	
 	public void run(){
 		double tempoEntreChegadas =  (- Math.log(Math.random())/Simulador.lambda)*1000;//primeira chegada
 		if(tempoEntreChegadas<1)
@@ -81,7 +76,8 @@ public class ChegadaClientes extends Thread {
 		}
 
 		Simulador.salaoFechado = true;
-		System.out.println("Salao Fechado");
+		//System.out.println("Salao Fechado");
+		JOptionPane.showMessageDialog(null, "Salão fechado para chegada de clientes!\n Aguarde o atendimento dos clientes finais.","Aviso de Encerramento do Expediente" , JOptionPane.INFORMATION_MESSAGE);
 		
 	}
 	
