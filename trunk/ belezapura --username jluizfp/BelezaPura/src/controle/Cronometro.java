@@ -15,9 +15,7 @@ public class Cronometro extends Thread {
 
 		while(!Simulador.salaoFechado) {
 			try {
-				if(Simulador.horaAberturaEmSegundos+hora == Simulador.horaFechamentoEmSegundos){
-					Simulador.salaoFechado = true;
-					}
+				
 				sleep(100);
 				horaD = ((System.currentTimeMillis()- Simulador.tempoInicial)/1000);
 				horaD *=(Simulador.tempoExpedienteEmSegundos/Simulador.horarioComercial);
@@ -27,7 +25,9 @@ public class Cronometro extends Thread {
 				minutoD *=(Simulador.tempoExpedienteEmSegundos/Simulador.horarioComercial*60);
 				minutoD %= 60;
 				minuto = (int)minutoD;
-				
+				if(Simulador.horaAberturaEmSegundos+hora == Simulador.horaFechamentoEmSegundos){
+					Simulador.salaoFechado = true;
+				}
 			
 				
 				Janela.jLabelHora.setText(String.format("%02d:%02d", Simulador.horaAberturaEmSegundos+hora, minuto));
