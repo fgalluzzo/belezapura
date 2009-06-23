@@ -28,11 +28,11 @@ public class Caixa extends Thread {
 				Simulador.mutualExCaixa.acquire();
 					c = Simulador.filaCaixa.removeCliente();
 					Simulador.P++;
+					Janela.valorRecolhido += c.getGastou();
+					Janela.jLabelFaturamentoValor.setText(df.format(Janela.valorRecolhido));
 					if(Simulador.salaoFechado && Simulador.N ==Simulador.P){
 						new RelatorioFinal().setVisible(true);
 					}
-					Janela.valorRecolhido += c.getGastou();
-					Janela.jLabelFaturamentoValor.setText(df.format(Janela.valorRecolhido));
 					tempo_servico = Math.random()*Simulador.pesoCaixa;
 					if(tempo_servico < 1)
 						tempo_servico+=1;
