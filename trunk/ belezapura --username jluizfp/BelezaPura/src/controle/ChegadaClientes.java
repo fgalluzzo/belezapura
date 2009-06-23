@@ -75,9 +75,9 @@ public class ChegadaClientes extends Thread {
 			
 		}
 
-		Simulador.salaoFechado = true;
+		//Simulador.salaoFechado = true;
 		//System.out.println("Salao Fechado");
-		JOptionPane.showMessageDialog(null, "Salão fechado para chegada de clientes!\n Aguarde o atendimento dos clientes finais.","Aviso de Encerramento do Expediente" , JOptionPane.INFORMATION_MESSAGE);
+		
 		
 	}
 	

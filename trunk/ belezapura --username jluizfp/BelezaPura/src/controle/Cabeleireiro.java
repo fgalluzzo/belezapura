@@ -54,6 +54,8 @@ public class Cabeleireiro extends Thread {
 								Simulador.fatCab[(int) (currentThread().getId() % 5)] +=  c.getServicos().get(j).getTipoServico().getValor()*0.4;
 								c.getServicos().remove(j);
 								tempo_servico = Math.random()*Simulador.pesoCorte;
+								if(tempo_servico < 1)
+									tempo_servico+=1;
 								break;
 							}
 							//Se for  corte e penteado -> retira o serviço de corte e penteado e insere um de penteado 
@@ -65,6 +67,8 @@ public class Cabeleireiro extends Thread {
 								Simulador.fatCab[(int) (currentThread().getId() % 5)] += c.getServicos().get(j).getTipoServico().getValor()*0.4;
 								c.getServicos().remove(j);					
 								tempo_servico = Math.random()*Simulador.pesoCortePenteado;
+								if(tempo_servico < 1)
+									tempo_servico+=1;
 								break;
 							}
 							if(Simulador.fila.get(i).getServicos().get(j).getTipoServico().equals(TipoServico.PENTEADO)){
@@ -74,6 +78,8 @@ public class Cabeleireiro extends Thread {
 								Simulador.fatCab[(int) (currentThread().getId() % 5)] +=  c.getServicos().get(j).getTipoServico().getValor()*0.4;
 								c.getServicos().remove(j);					
 								tempo_servico = Math.random()*Simulador.pesoPenteado;
+								if(tempo_servico < 1)
+									tempo_servico+=1;
 								break;
 							}
 						}

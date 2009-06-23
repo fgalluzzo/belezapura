@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 import modelo.Cliente;
 import view.Janela;
+import view.RelatorioFinal;
 import view.Simulador;
 
 public class Caixa extends Thread {
@@ -23,12 +24,18 @@ public class Caixa extends Thread {
 			}
 			Cliente c = new Cliente();
 			try {
-				//Exclus�o m�tua para fila do caixa
+				//Exclus?o m?tua para fila do caixa
 				Simulador.mutualExCaixa.acquire();
 					c = Simulador.filaCaixa.removeCliente();
+					Simulador.P++;
+					if(Simulador.salaoFechado && Simulador.N ==Simulador.P){
+						new RelatorioFinal().setVisible(true);
+					}
 					Janela.valorRecolhido += c.getGastou();
 					Janela.jLabelFaturamentoValor.setText(df.format(Janela.valorRecolhido));
 					tempo_servico = Math.random()*Simulador.pesoCaixa;
+					if(tempo_servico < 1)
+						tempo_servico+=1;
 				//Libero a fila de espera do caixa
 				Simulador.mutualExCaixa.release();
 				

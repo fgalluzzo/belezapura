@@ -26,7 +26,7 @@ public class Controle extends Thread {
 				
 				synchronized (this) {
 					try {
-						wait(500);
+						wait(200);
 					}
 					 catch (InterruptedException e) {
 						e.printStackTrace();
