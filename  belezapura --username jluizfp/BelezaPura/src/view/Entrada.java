@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.util.concurrent.Semaphore;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import modelo.FilaCaixa;
 import modelo.FilaEspera;
@@ -172,8 +173,12 @@ public class Entrada extends javax.swing.JFrame {
     	Simulador.horaAberturaEmSegundos = Integer.parseInt(jTextFieldHorarioA.getText());
     	Simulador.horaFechamentoEmSegundos = Integer.parseInt(jTextFieldHorarioA1.getText());
     	
-    	this.setVisible(false);
-    	iniciarSimulacao();
+    	if (Simulador.horaFechamentoEmSegundos <= Simulador.horaAberturaEmSegundos) {
+    		JOptionPane.showMessageDialog(null, "O horario de fechamento do salão é menor ou igual ao horario de abertura.","Mensagem de Erro" , JOptionPane.ERROR_MESSAGE);
+    	} else {
+    		this.setVisible(false);
+        	iniciarSimulacao();
+    	}
 	}
     
     private void iniciarSimulacao() {
