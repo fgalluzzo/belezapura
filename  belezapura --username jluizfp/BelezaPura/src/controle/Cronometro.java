@@ -1,5 +1,7 @@
 package controle;
 
+import javax.swing.JOptionPane;
+
 import view.Janela;
 import view.Simulador;
 
@@ -13,6 +15,10 @@ public class Cronometro extends Thread {
 
 		while(!Simulador.salaoFechado) {
 			try {
+				if(Simulador.horaAberturaEmSegundos+hora == Simulador.horaFechamentoEmSegundos){
+					Simulador.salaoFechado = true;
+					JOptionPane.showMessageDialog(null, "Salão fechado para chegada de clientes!\n Aguarde o atendimento dos clientes finais.","Aviso de Encerramento do Expediente" , JOptionPane.INFORMATION_MESSAGE);
+				}
 				sleep(100);
 				horaD = ((System.currentTimeMillis()- Simulador.tempoInicial)/1000);
 				horaD *=(Simulador.tempoExpedienteEmSegundos/Simulador.horarioComercial);
@@ -23,6 +29,7 @@ public class Cronometro extends Thread {
 				minutoD %= 60;
 				minuto = (int)minutoD;
 				
+			
 				
 				Janela.jLabelHora.setText(String.format("%02d:%02d", Simulador.horaAberturaEmSegundos+hora, minuto));
 				

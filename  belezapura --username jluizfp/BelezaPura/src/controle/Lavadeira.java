@@ -39,8 +39,10 @@ public class Lavadeira extends Thread {
 				synchronized (this) {
 					
 					try {
-						Simulador.fatLav[(int) (currentThread().getId() % 3)] += c.getGastou()*0.4;
+						
 						tempo_servico = Math.random()*Simulador.pesoLavagem;
+						if(tempo_servico < 1)
+							tempo_servico+=1;
 						int i = (int)currentThread().getId()%3;
 						switch(i){
 							case 0:

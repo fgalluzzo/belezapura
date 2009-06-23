@@ -39,6 +39,8 @@ public class Pedicure extends Thread {
 							c.getServicos().remove(j);
 							
 							tempo_servico = Math.random()*Simulador.pesoPedicure;
+							if(tempo_servico < 1)
+								tempo_servico+=1;
 							break;
 						}
 					}

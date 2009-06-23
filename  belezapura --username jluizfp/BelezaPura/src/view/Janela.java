@@ -653,7 +653,7 @@ public class Janela extends javax.swing.JFrame {
     	System.out.println("Valor total " + valorRecolhido);
     	System.out.println("Pessoas atendidas = "+Simulador.N);*/
     	this.setVisible(false);
-    	new RelatorioFinal().setVisible(true);
+ 
         //System.exit(1);
     }                                        
 

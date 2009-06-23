@@ -38,6 +38,8 @@ public class Massagista extends Thread {
 							Simulador.fatMas += c.getServicos().get(j).getTipoServico().getValor()*0.4;
 							c.getServicos().remove(j);
 							tempo_servico = Math.random()*Simulador.pesoMassagem;
+							if(tempo_servico < 1)
+								tempo_servico+=1;
 							break;
 						}
 					}

@@ -31,7 +31,8 @@ public class Simulador {
     
     public static  double lambda ;
     
-    public static int N;
+    public static int N;//pessoas que entraram no salão
+    public static int P;//pessoas que partiram do salão
 	public static double tempoInicial;
 	//public static double tempoSimulacao;
 	public static FilaEspera fila;

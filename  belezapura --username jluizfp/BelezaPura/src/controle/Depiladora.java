@@ -39,6 +39,8 @@ public class Depiladora extends Thread {
 							Simulador.fatDep[(int) (currentThread().getId() % 2)] += c.getServicos().get(j).getTipoServico().getValor()*0.4;
 							c.getServicos().remove(j);
 							tempo_servico = Math.random()*Simulador.pesoDepilacao;
+							if(tempo_servico < 1)
+								tempo_servico+=1;
 							break;
 						}
 					}
