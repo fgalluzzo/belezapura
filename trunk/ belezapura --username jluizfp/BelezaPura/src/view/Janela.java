@@ -89,6 +89,7 @@ public class Janela extends javax.swing.JFrame {
         jLabelRelogioLogo = new javax.swing.JLabel();
         jLabelHora = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton1.setVisible(false);
         
         jLabelLogo = new javax.swing.JLabel(new ImageIcon("imgs/logoPrincipal.png"));
         
@@ -641,17 +642,7 @@ public class Janela extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {  
-    	/*for(int i = 0;i<5;i++)
-    		System.out.println("Cab"+ (i+1) +" faturou " + Simulador.fatCab[i]);
-    	for(int i = 0;i<3;i++)
-    		System.out.println("Lav"+ (i+1) +" faturou " + Simulador.fatLav[i]);
-    	for(int i = 0;i<3;i++)
-    		System.out.println("Ped"+ (i+1) +" faturou " + Simulador.fatPed[i]);
-    	for(int i = 0;i<2;i++)
-    		System.out.println("Dep"+ (i+1) +" faturou " + Simulador.fatDep[i]);
-    	System.out.println("Mas faturou "+ Simulador.fatMas);
-    	System.out.println("Valor total " + valorRecolhido);
-    	System.out.println("Pessoas atendidas = "+Simulador.N);*/
+    	
     	this.setVisible(false);
  
         //System.exit(1);
