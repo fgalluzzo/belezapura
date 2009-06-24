@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
@@ -188,7 +189,9 @@ public class Janela extends javax.swing.JFrame {
         );
         
         jListaClientes.setEnabled(false);
+        jListaClientes.setDisabledTextColor(Color.BLACK);
         jTextPane2.setEnabled(false);
+        jTextPane2.setDisabledTextColor(Color.BLACK);
         
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
