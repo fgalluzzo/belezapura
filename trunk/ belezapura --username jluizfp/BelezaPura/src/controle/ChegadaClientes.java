@@ -1,7 +1,5 @@
 package controle;
 
-import javax.swing.JOptionPane;
-
 import modelo.Cliente;
 import util.GeraServico;
 import view.Simulador;
